@@ -1,16 +1,28 @@
-import { useState } from 'react'
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+} from 'react-router-dom'
 import Homepage from './pages/Homepage'
+import Pathfinder from './pages/Pathfinder'
 
 function App() {
+  return (
+    <Router>
+      <Switch>
+        <Route path='/pathfinder'>
+          <Pathfinder />
+        </Route>
+        <Route path='/home'>
+          <Homepage />
+        </Route>
 
-  const [page, selectPage] = useState('home')
-
-  const changePage = (newPage) => { selectPage(newPage) }
-
-  switch (page) {
-    case 'home':
-      return (<Homepage navigate={changePage}/>)
-  }
+        <Route path='/'>
+          <Homepage />
+        </Route>
+      </Switch>
+    </Router>
+  )
 }
 
 export default App;

@@ -7,8 +7,8 @@
   justify-content: center;
 }
 
-.Card {
-  width: calc((200 + 2vmin));
+.card {
+  width: calc((150px + 10vmin));
   margin: 10px;
 }
 

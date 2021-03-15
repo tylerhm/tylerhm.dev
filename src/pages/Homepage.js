@@ -3,25 +3,15 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import CardGroup from '../components/CardGroup'
 import ReactTypingEffect from 'react-typing-effect'
 
-function Homepage({ navigate }) {
+function Homepage() {
 
   const cardData = {
-    'Card One': {
+    'Pathfinder': {
       image: '../logo192.png',
-      body: 'This is a test card',
-      page: 'home',
+      body: 'Check out this awesome pathfinding visualization, written entirely in Javascript!',
+      page: 'pathfinder',
     },
     'Card Two': {
-      image: '../logo192.png',
-      body: 'This is a test card',
-      page: 'home',
-    },
-    'Card Three': {
-      image: '../logo192.png',
-      body: 'This is a test card',
-      page: 'home',
-    },
-    'Card Four': {
       image: '../logo192.png',
       body: 'This is a test card',
       page: 'home',
@@ -31,28 +21,28 @@ function Homepage({ navigate }) {
   return (
     <div className='HomeLayout'>
       <div className='Header'>
-      <h5>
-        Hi :) I'm
-        </h5>
+        <h3>
+          Hi :) I'm
+        </h3>
         <h1>
           Tyler Hostler-Mathis,
         </h1>
-        <h5>
-        <ReactTypingEffect
-          text={[
-            'a developer 👨‍💻',
-            'a student 📚',
-            'an intern 🌎',
-            'a streamer 📷',
-          ]}
-          speed={50}
-          eraseSpeed={50}
-          typingDelay={1000}
-          eraseDelay={2500}
-          />
-        </h5>
+        <h3>
+          <ReactTypingEffect
+            text={[
+              'a developer 👨‍💻',
+              'a student 📚',
+              'an intern 🌎',
+              'a streamer 📷',
+            ]}
+            speed={50}
+            eraseSpeed={50}
+            typingDelay={1000}
+            eraseDelay={2500}
+            />
+        </h3>
       </div>
-      <CardGroup cardData={cardData} navigate={navigate}/>
+      <CardGroup cardData={cardData}/>
     </div>
   )
 }
