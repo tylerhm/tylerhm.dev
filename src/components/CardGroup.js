@@ -4,7 +4,7 @@ import Button from 'react-bootstrap/Button'
 import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 
-const CardGroup = ({ cardData }) => {
+const CardGroup = ({ cardData, title }) => {
 
   const cards = [];
 
@@ -18,7 +18,7 @@ const CardGroup = ({ cardData }) => {
             {meta.body}
           </Card.Text>
           <Link to={`/${meta.page}`}>
-            <Button variant='primary'> Check it out! </Button>
+            <Button variant='primary'>Check it out!</Button>
           </Link>
         </Card.Body>
       </Card>
@@ -26,14 +26,20 @@ const CardGroup = ({ cardData }) => {
   }
 
   return (
-    <div className='CardPicker'>
-      {cards}
+    <div>
+      <h5>
+        {title}
+      </h5>
+      <div className='CardPicker'>
+        {cards}
+      </div>
     </div>
   )
 }
 
 CardGroup.propTypes = {
-  cardData: PropTypes.object.isRequired
+  cardData: PropTypes.object.isRequired,
+  title: PropTypes.string,
 }
 
 export default CardGroup;

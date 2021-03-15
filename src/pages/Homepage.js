@@ -1,5 +1,4 @@
 import './Homepage.css'
-import 'bootstrap/dist/css/bootstrap.min.css'
 import CardGroup from '../components/CardGroup'
 import ReactTypingEffect from 'react-typing-effect'
 
@@ -10,11 +9,6 @@ function Homepage() {
       image: '../logo192.png',
       body: 'Check out this awesome pathfinding visualization, written entirely in Javascript!',
       page: 'pathfinder',
-    },
-    'Card Two': {
-      image: '../logo192.png',
-      body: 'This is a test card',
-      page: 'home',
     },
   }
 

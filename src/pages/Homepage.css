@@ -5,12 +5,12 @@
   justify-content: flex-start;
   min-height: 100vh;
   min-width: 100vw;
-  background-color:linen;
+  background-color:white;
 }
 
 .Header {
   margin-top: 10vh;
-  margin-bottom: 5vh;
+  margin-bottom: 10vh;
 }
 
 .Header h1 {
