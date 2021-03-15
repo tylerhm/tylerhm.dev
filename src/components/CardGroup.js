@@ -3,7 +3,7 @@ import Card from 'react-bootstrap/Card'
 import Button from 'react-bootstrap/Button'
 import PropTypes from 'prop-types'
 
-const CardGroup = ({ cardData }) => {
+const CardGroup = ({ cardData, navigate }) => {
 
   const cards = [];
 
@@ -16,7 +16,11 @@ const CardGroup = ({ cardData }) => {
           <Card.Text className='CardText'>
             {meta.body}
           </Card.Text>
-          <Button variant='primary'>Check it out!</Button>
+          <Button
+            variant='primary'
+            href={navigate(meta.page)}>
+              Check it out!
+          </Button>
         </Card.Body>
       </Card>
     )

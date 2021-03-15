@@ -3,34 +3,34 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import CardGroup from '../components/CardGroup'
 import ReactTypingEffect from 'react-typing-effect'
 
-function Homepage() {
+function Homepage({ navigate }) {
 
   const cardData = {
     'Card One': {
       image: '../logo192.png',
       body: 'This is a test card',
-      href: 'placeholder.js',
+      page: 'home',
     },
     'Card Two': {
       image: '../logo192.png',
       body: 'This is a test card',
-      href: 'placeholder.js',
+      page: 'home',
     },
     'Card Three': {
       image: '../logo192.png',
       body: 'This is a test card',
-      href: 'placeholder.js',
+      page: 'home',
     },
     'Card Four': {
       image: '../logo192.png',
       body: 'This is a test card',
-      href: 'placeholder.js',
+      page: 'home',
     },
   }
 
   return (
     <div className='HomeLayout'>
-      <div className='Name'>
+      <div className='Header'>
       <h5>
         Hi :) I'm
         </h5>
@@ -52,7 +52,7 @@ function Homepage() {
           />
         </h5>
       </div>
-      <CardGroup cardData={cardData}/>
+      <CardGroup cardData={cardData} navigate={navigate}/>
     </div>
   )
 }
