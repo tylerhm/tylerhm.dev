@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom'
 
 const CardGroup = ({ cardData, title }) => {
 
-  const cards = [];
+  const cards = []
 
   for (const [title, meta] of Object.entries(cardData)) {
     cards.push(
@@ -42,4 +42,4 @@ CardGroup.propTypes = {
   title: PropTypes.string,
 }
 
-export default CardGroup;
+export default CardGroup

@@ -14,7 +14,7 @@ const Pathfinder = () => {
             <NavDropdown.Item href='#action/3.1'>Breadth-First Search</NavDropdown.Item>
             <NavDropdown.Item href='#action/3.2'>Depth-First Search</NavDropdown.Item>
             <NavDropdown.Item href='#action/3.3'>Greedy Depth-First Search</NavDropdown.Item>
-            <NavDropdown.Item href='#action/3.4'>Dijkstra's Algorithm</NavDropdown.Item>
+            <NavDropdown.Item href='#action/3.4'>Dijkstra&apos;s Algorithm</NavDropdown.Item>
           </NavDropdown>
         </Nav>
       </Navbar.Collapse>

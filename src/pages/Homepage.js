@@ -16,7 +16,7 @@ function Homepage() {
     <div className='HomeLayout'>
       <div className='Header'>
         <h3>
-          Hi :) I'm
+          Hi :) I&apos;m
         </h3>
         <h1>
           Tyler Hostler-Mathis,
@@ -41,4 +41,4 @@ function Homepage() {
   )
 }
 
-export default Homepage;
+export default Homepage

@@ -1,0 +1,16 @@
+{
+  "parser": "@babel/eslint-parser",
+  "plugins": [
+    "react"
+  ],
+  "rules": {
+    "quotes": ["error", "single"],
+    "semi": ["error", "never"],
+
+    "react/react-in-jsx-scope": ["off"]
+  },
+  "extends": [
+    "eslint:recommended",
+    "plugin:react/recommended"
+  ]
+}
