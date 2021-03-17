@@ -1,6 +1,7 @@
 import Navbar from 'react-bootstrap/Navbar'
 import Nav from 'react-bootstrap/Nav'
-import NavDropdown from 'react-bootstrap/NavDropdown'
+import ContextualDropdown from '../components/ContextualDropdown'
+
 
 const Pathfinder = () => {
   return (
@@ -10,12 +11,16 @@ const Pathfinder = () => {
       <Navbar.Collapse id='basic-navbar-nav'>
         <Nav className='mr-auto'>
           <Nav.Link href='#link'>Link</Nav.Link>
-          <NavDropdown title='Dropdown' id='basic-nav-dropdown'>
-            <NavDropdown.Item href='#action/3.1'>Breadth-First Search</NavDropdown.Item>
-            <NavDropdown.Item href='#action/3.2'>Depth-First Search</NavDropdown.Item>
-            <NavDropdown.Item href='#action/3.3'>Greedy Depth-First Search</NavDropdown.Item>
-            <NavDropdown.Item href='#action/3.4'>Dijkstra&apos;s Algorithm</NavDropdown.Item>
-          </NavDropdown>
+          <ContextualDropdown
+            id='Pathfinding algorithm selector'
+            items={[
+              'Breadth-First Search',
+              'Depth-First Search',
+              'Greedy Depth-First Search',
+              'Dijkstra\'s Algorithm'
+            ]}
+            defaultSelected='Breadth-First Search'
+          />
         </Nav>
       </Navbar.Collapse>
     </Navbar>
