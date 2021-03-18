@@ -25,7 +25,8 @@ const ContextualDropdown = ({ id, items, defaultSelected, callback }) => {
       <NavDropdown.Item onClick={() => selectItem(element)}>
         {element}
       </NavDropdown.Item>
-  )})
+    )
+  })
   
   return (
     <NavDropdown
@@ -39,7 +40,7 @@ const ContextualDropdown = ({ id, items, defaultSelected, callback }) => {
 
 ContextualDropdown.propTypes = {
   id: PropTypes.string,
-  items: PropTypes.arary,
+  items: PropTypes.array,
   defaultSelected: PropTypes,
   callback: PropTypes.func
 }

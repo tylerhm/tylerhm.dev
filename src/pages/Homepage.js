@@ -3,7 +3,7 @@ import CardGroup from '../components/CardGroup'
 import ReactTypingEffect from 'react-typing-effect'
 
 function Homepage() {
-
+  // Renderable cards
   const cardData = {
     'Pathfinder': {
       image: '../logo192.png',
@@ -27,13 +27,14 @@ function Homepage() {
               'a developer 👨‍💻',
               'a student 📚',
               'an intern 🌎',
-              'a streamer 📷',
+              'a streamer 🔴',
+              'a gamer 🎮',
             ]}
             speed={50}
             eraseSpeed={50}
             typingDelay={1000}
             eraseDelay={2500}
-            />
+          />
         </h3>
       </div>
       <CardGroup cardData={cardData}/>
