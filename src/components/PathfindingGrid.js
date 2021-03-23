@@ -1,7 +1,15 @@
 import PropTypes from 'prop-types'
 import GridCell from './GridCell'
+import Colors from '../utils/ColorScheme'
+import Algorithms from '../utils/Algorithms'
 
-const PathfindingGrid = ({ dimensions }) => {
+const PathfindingGrid = ({ dimensions, selectedAlgorithmIndex }) => {
+
+  // Main Pathfinding object
+  const pathfinder = new Algorithms(selectedAlgorithmIndex)
+  pathfinder.selectAlgorithm = selectedAlgorithmIndex
+  console.log(pathfinder.getSelectedAlgorithm)
+
   // Parse the cellsX and Y from dimensions
   const [cellsX, cellsY] = [dimensions.width, dimensions.height]
   const cellSize = dimensions.cellSize
@@ -12,9 +20,12 @@ const PathfindingGrid = ({ dimensions }) => {
       display: 'flex',
       flexDirection: 'row',
       flexWrap: 'wrap',
-      minWidth: cellSize*cellsX,
-      width: cellSize*cellsX,
-      backgroundColor: 'cyan',
+      minWidth: cellSize * cellsX + 6,
+      width: cellSize * cellsX + 6,
+      backgroundColor: Colors.darkest,
+      borderWidth: '3px',
+      borderStyle: 'solid',
+      borderColor: Colors.darkest,
     }
   }
 
@@ -35,7 +46,8 @@ const PathfindingGrid = ({ dimensions }) => {
 }
 
 PathfindingGrid.propTypes = {
-  dimensions: PropTypes.object
+  dimensions: PropTypes.object,
+  selectedAlgorithmIndex: PropTypes.number
 }
 
 export default PathfindingGrid

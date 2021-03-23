@@ -10,7 +10,7 @@
 .card {
   width: calc((150px + 10vmin));
   margin: 10px;
-  background-color: white;
+  background-color: var(--lightest);
 }
 
 .CardText {

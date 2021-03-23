@@ -8,6 +8,7 @@ const CardGroup = ({ cardData, title }) => {
 
   const cards = []
 
+  // Create card renderable for every card data
   for (const [title, meta] of Object.entries(cardData)) {
     cards.push(
       <Card key={`card-${meta.page}`}>

@@ -32,14 +32,17 @@ const GridCell = ({ size }) => {
   // State is.... stateful
   const [state, setState] = useState(states.EMPTY)
 
+  // Cell specific styles
   const styles = {
     cell: {
       width: size,
       height: size,
       backgroundColor: state,
+      borderRadius: 5,
     }
   }
 
+  // Cyclic state updater
   const updateState = () => {
     setState(nextState(state))
   }

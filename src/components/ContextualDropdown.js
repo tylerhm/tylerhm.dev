@@ -41,7 +41,7 @@ const ContextualDropdown = ({ id, items, defaultSelected, callback }) => {
 ContextualDropdown.propTypes = {
   id: PropTypes.string,
   items: PropTypes.array,
-  defaultSelected: PropTypes,
+  defaultSelected: PropTypes.string,
   callback: PropTypes.func
 }
 
