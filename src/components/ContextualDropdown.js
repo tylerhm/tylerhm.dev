@@ -20,9 +20,12 @@ const ContextualDropdown = ({ id, items, defaultSelected, callback }) => {
   const dropdownItems = []
 
   // Add all items as dropdowns
-  items.forEach(element => {
+  items.forEach((element, index) => {
     dropdownItems.push(
-      <NavDropdown.Item onClick={() => selectItem(element)}>
+      <NavDropdown.Item
+        key={index}
+        onClick={() => selectItem(element)}
+      >
         {element}
       </NavDropdown.Item>
     )

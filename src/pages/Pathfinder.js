@@ -28,6 +28,7 @@ const Pathfinder = () => {
   const pathfinder = new Algorithms(algorithm)
   let clocker = undefined
 
+  // Starts a pathfinding session
   const startPathfinding = () => {
     pathfinder.prepareController({x: 5, y: 5}, 50, 50)
     clocker = setInterval(() => {
@@ -36,6 +37,7 @@ const Pathfinder = () => {
     }, 1000)
   }
 
+  // Clears the pathfinding interval
   const stopPathfinding = () => {
     clearInterval(clocker)
   }
