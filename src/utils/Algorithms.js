@@ -4,24 +4,32 @@ import BFS from './BFS'
 class Algorithms {
 
   constructor(selectedIndex) {
-    this.algorithms = {
-      'BFS': BFS, // Breadth-First Search
-      'DFS': BFS, // Depth-First Search
-      'GDFS': BFS, // Greedy Depth-First Search
-      'DA': BFS, // Dijkstra's Algorithm
+    this.algorithms = [
+      'BFS', // Breadth-First Search
+      'DFS', // Depth-First Search
+      'GDFS', // Greedy Depth-First Search
+      'DA', // Dijkstra's Algorithm
+    ]
+
+    this.algorithm = this.algorithms[selectedIndex]
+  }
+
+  prepareController(startCoord, cellsX, cellsY) {
+    switch (this.algorithm) {
+    case this.algorithms[0]:
+      this.controller = new BFS(startCoord, cellsX, cellsY)
+      break
     }
-    this.selectedAlgorithm = 0
-    this.selectAlgorithm = selectedIndex
   }
 
-  // Getter for current algorithm
-  get getSelectedAlgorithm() {
-    return this.selectedAlgorithm
+  // Getter method for current frontier
+  get frontier() {
+    return this.controller.frontier
   }
 
-  // Setter method for selectedAlgorithm
-  set selectAlgorithm(algorithmIndex) {
-    this.selectedAlgorithm = this.algorithms[algorithmIndex]
+  // Clocks the selected algorithm
+  clock() {
+    this.controller.clock()
   }
 }
 

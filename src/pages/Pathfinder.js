@@ -2,9 +2,11 @@ import './Pathfinder.css'
 import { useState } from 'react'
 import Navbar from 'react-bootstrap/Navbar'
 import Nav from 'react-bootstrap/Nav'
+import Button from 'react-bootstrap/Button'
 import ContextualDropdown from '../components/ContextualDropdown'
 import PathfindingGrid from '../components/PathfindingGrid'
 import useWindowDimensions from '../utils/WindowDimensions'
+import Algorithms from '../utils/Algorithms'
 
 const Pathfinder = () => {
   // Algorithms implemented by the Pathfinding grid
@@ -16,10 +18,26 @@ const Pathfinder = () => {
   ]
 
   // Currently selected algorithm is stateful
-  const [algorithm, setAlgorithm] = useState(algorithms[0])
+  const [algorithm, setAlgorithm] = useState(0)
 
   const updateSelected = (algorithmIndex) => {
-    setAlgorithm(algorithms[algorithmIndex])
+    setAlgorithm(algorithmIndex)
+  }
+
+  // Main Pathfinding object
+  const pathfinder = new Algorithms(algorithm)
+  let clocker = undefined
+
+  const startPathfinding = () => {
+    pathfinder.prepareController({x: 5, y: 5}, 50, 50)
+    clocker = setInterval(() => {
+      pathfinder.clock()
+      console.log(pathfinder.frontier)
+    }, 1000)
+  }
+
+  const stopPathfinding = () => {
+    clearInterval(clocker)
   }
 
   // Retrieve window dimentions
@@ -43,9 +61,23 @@ const Pathfinder = () => {
             <ContextualDropdown
               id='Pathfinding algorithm selector'
               items={algorithms}
-              defaultSelected={algorithm}
+              defaultSelected={algorithms[algorithm]}
               updateSelected={updateSelected}
             />
+            <Button
+              style={{margin: 5}}
+              variant='primary'
+              onClick={startPathfinding}
+            >
+              Pathfind!
+            </Button>
+            <Button
+              style={{margin: 5}}
+              variant='danger'
+              onClick={stopPathfinding}
+            >
+              Stop
+            </Button>
           </Nav>
         </Navbar.Collapse>
       </Navbar>

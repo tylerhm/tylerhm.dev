@@ -1,14 +1,8 @@
 import PropTypes from 'prop-types'
 import GridCell from './GridCell'
 import Colors from '../utils/ColorScheme'
-import Algorithms from '../utils/Algorithms'
 
-const PathfindingGrid = ({ dimensions, selectedAlgorithmIndex }) => {
-
-  // Main Pathfinding object
-  const pathfinder = new Algorithms(selectedAlgorithmIndex)
-  pathfinder.selectAlgorithm = selectedAlgorithmIndex
-  console.log(pathfinder.getSelectedAlgorithm)
+const PathfindingGrid = ({ dimensions }) => {
 
   // Parse the cellsX and Y from dimensions
   const [cellsX, cellsY] = [dimensions.width, dimensions.height]
