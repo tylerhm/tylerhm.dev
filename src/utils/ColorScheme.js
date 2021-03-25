@@ -3,8 +3,8 @@ const colors = {
   lightest: '#f7fff7ff',
   accent1: '#4ecdc4ff',
   accent2: '#ff6b6bff',
-  accent3: '#ffe66dff',
-  accent3dim: '#9ea09c',
+  accent3: '#e2e5e9',
+  accent3dim: '#ffe66dff',
 }
 
 export default colors

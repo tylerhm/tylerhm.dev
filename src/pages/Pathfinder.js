@@ -165,7 +165,7 @@ const Pathfinder = () => {
         stopPathfinding()
       }
 
-    }, 100)
+    }, 10)
   }
 
   // Clears the pathfinding interval
