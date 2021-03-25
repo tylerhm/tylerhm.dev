@@ -3,17 +3,30 @@ import { useState } from 'react'
 import Navbar from 'react-bootstrap/Navbar'
 import Nav from 'react-bootstrap/Nav'
 import ContextualDropdown from '../components/ContextualDropdown'
-import PathfindingGrid from '../components/PathfindingGrid'
+import PathfindingGrid from '../components/PathfindingGrid.js'
 import useWindowDimensions from '../utils/WindowDimensions'
+import Colors from '../utils/ColorScheme'
+
+// Algorithms implemented by the Pathfinding grid
+const algorithms = [
+  'Breadth-First Search',
+  'Depth-First Search',
+  'Greedy Depth-First Search',
+  'Dijkstra\'s Algorithm'
+]
+
+// Get the next button state
+const nextState = (state) => {
+  switch (state) {
+  case 'EMPTY': return 'WALL'
+  case 'WALL': return 'START'
+  case 'START': return 'END'
+  case 'END': return 'EMPTY'
+  }
+}
 
 const Pathfinder = () => {
-  // Algorithms implemented by the Pathfinding grid
-  const algorithms = [
-    'Breadth-First Search',
-    'Depth-First Search',
-    'Greedy Depth-First Search',
-    'Dijkstra\'s Algorithm'
-  ]
+
 
   // Currently selected algorithm is stateful
   const [algorithm, setAlgorithm] = useState(0)
@@ -22,13 +35,31 @@ const Pathfinder = () => {
     setAlgorithm(algorithmIndex)
   }
 
-  // Retrieve window dimentions
+  // Retrieve window dimensions
   const { height, width } = useWindowDimensions()
 
   // Calculate necessary dimensions for pathfinding grid
   const cellSize = Math.round(Math.min(height, width) / 25)
   const cellsX = Math.round(width / cellSize) - 4
   const cellsY = Math.round(height / cellSize) - 4
+
+  // Thickness of grid border
+  const borderWidth = 3
+  
+  // Grid style
+  const styles = {
+    gridContainer: {
+      display: 'flex',
+      flexDirection: 'row',
+      flexWrap: 'wrap',
+      minWidth: cellSize * cellsX + 2 * borderWidth,
+      width: cellSize * cellsX + 2 * borderWidth,
+      backgroundColor: Colors.darkest,
+      borderWidth: borderWidth,
+      borderStyle: 'solid',
+      borderColor: Colors.darkest,
+    },
+  }
 
   // 2D grid of Cells
   const initialGridState = []
@@ -39,9 +70,22 @@ const Pathfinder = () => {
     for (let x = 0; x < cellsX; x++)
       initialGridState[y].push('EMPTY')
   }
-  
+
+  // Gride state is.......... stateful.... lol
+  const [gridState, setGridState] = useState(initialGridState)
+
+  // Update a cell to the cyclic next state
+  const cellClicked = (y, x) => {
+    console.log('clicked')
+    const stateCopy = [...gridState]
+    stateCopy[y][x] = nextState(stateCopy[y][x])
+    setGridState(stateCopy)
+  }
+
   return (
     <div className='layout'>
+
+      
       <Navbar
         className='nav'
         bg='light'
@@ -59,17 +103,18 @@ const Pathfinder = () => {
           </Nav>
         </Navbar.Collapse>
       </Navbar>
+
+
       <div className='content'>
         <PathfindingGrid 
-          dimensions={{
-            width: cellsX,
-            height: cellsY,
-            cellSize: cellSize,
-          }}
-          initialGridState={initialGridState}
-          selectedAlgorithm={algorithm}
+          style={styles.gridContainer}
+          gridState={gridState}
+          cellSize={cellSize}
+          cellClicked={cellClicked}
         />
       </div>
+
+
     </div>
   )
 }

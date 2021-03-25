@@ -1,7 +1,7 @@
 import './GridCell.css'
 import PropTypes from 'prop-types'
 
-const GridCell = ({ color, size, xLoc, yLoc, notifyClick }) => {
+const GridCell = ({ color, size, cellClicked }) => {
   // Styles for a grid cell
   const styles = {
     cell: {
@@ -12,14 +12,9 @@ const GridCell = ({ color, size, xLoc, yLoc, notifyClick }) => {
     }
   }
 
-  // Cyclic state updater
-  const updateState = () => {
-    notifyClick(xLoc, yLoc)
-  }
-
   return (
     <a
-      onClick={updateState}>
+      onClick={cellClicked}>
       <div
         className='cell'
         style={styles.cell} />
@@ -30,9 +25,7 @@ const GridCell = ({ color, size, xLoc, yLoc, notifyClick }) => {
 GridCell.propTypes = {
   color: PropTypes.string,
   size: PropTypes.number,
-  xLoc: PropTypes.number,
-  yLoc: PropTypes.number,
-  notifyClick: PropTypes.func,
+  cellClicked: PropTypes.func,
 }
 
 export default GridCell
