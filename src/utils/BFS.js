@@ -51,6 +51,7 @@ class BreadthFirstSearch {
     this.dx = [-1, 0, 1, 0]
     this.dy = [0, -1, 0, 1]
 
+    // Flag for finishing the pathing
     this.done = false
   }
 
@@ -71,9 +72,13 @@ class BreadthFirstSearch {
   }
 
   clock() {
-
-    if (this.queue.isEmpty()) {
+    // If there is nothing left to search, stop
+    if (this.queue.isEmpty())
       this.done = true
+
+    // We are done, don't clock
+    if (this.done) {
+      console.error('Clocked a finished pathfinder, aborting...')
       return
     }
 

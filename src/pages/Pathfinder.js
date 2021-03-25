@@ -68,6 +68,9 @@ const Pathfinder = () => {
     },
   }
 
+  // Will be true when done pathing
+  const [finishedPathing, setFinishedPathing] = useState(false)
+
   // Maintain the current location of the start node
   const [startPoint, setStartPoint] = useState({
     x: undefined,
@@ -92,6 +95,12 @@ const Pathfinder = () => {
   // Update a cell to the cyclic next state
   const cellClicked = (y, x) => {
 
+    // Clear the fontier if necessary
+    if (finishedPathing) {
+      clearVisitedAndPath()
+      setFinishedPathing(false)
+    }
+
     // Shallow copy the gridState
     const stateCopy = [...gridState]
 
@@ -111,13 +120,23 @@ const Pathfinder = () => {
   }
 
   // Sets all points in the points array to visited
-  const setState = (points, newState) => {
+  const setGridStateFromPoints = (points, newState) => {
     const gridStateCopy = [...gridState]
     points.forEach(point => {
       if (gridStateCopy[point.y][point.x] !== 'Start' && 
           gridStateCopy[point.y][point.x] !== 'End')
         gridStateCopy[point.y][point.x] = newState
     })
+    setGridState(gridStateCopy)
+  }
+
+  const clearVisitedAndPath = () => {
+    const gridStateCopy = [...gridState]
+    for (let y = 0; y < cellsY; y++)
+      for (let x = 0; x < cellsX; x++)
+        if (gridStateCopy[y][x] === 'Visited' ||
+            gridStateCopy[y][x] === 'Path')
+          gridStateCopy[y][x] = 'Empty'
     setGridState(gridStateCopy)
   }
 
@@ -137,11 +156,12 @@ const Pathfinder = () => {
       pathfinder.clock()
 
       // Update the new frontier
-      setState(pathfinder.visited, 'Visited')
+      setGridStateFromPoints(pathfinder.visited, 'Visited')
 
       // We found the goal!
       if (pathfinder.done) {
-        setState(pathfinder.path, 'Path')
+        setGridStateFromPoints(pathfinder.path, 'Path')
+        setFinishedPathing(true)
         stopPathfinding()
       }
 

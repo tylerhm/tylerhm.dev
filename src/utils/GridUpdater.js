@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 
-function getWindowDimensions() {
+const getWindowDimensions = () => {
   const { innerWidth: width, innerHeight: height } = window
   return {
     width,
@@ -8,8 +8,8 @@ function getWindowDimensions() {
   }
 }
 
-function constructGridState(cellSize) {
-
+const constructGridState = (cellSize) => {
+  // Get those dimensions!
   const { width, height } = getWindowDimensions()
 
   // Calculate necessary dimensions for pathfinding grid
@@ -29,7 +29,7 @@ function constructGridState(cellSize) {
   return gridState
 }
 
-export default function useGridState(cellSize) {
+const useGridState = (cellSize) => {
   const [gridState, setGridState] = useState(constructGridState(cellSize))
 
   function resetGridState() {
@@ -44,7 +44,7 @@ export default function useGridState(cellSize) {
     return () => window.removeEventListener('resize', resetGridState)
   }, [])
 
-  
-
   return { gridState, setGridState, resetGridState }
 }
+
+export default useGridState
