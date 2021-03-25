@@ -1,4 +1,5 @@
 import PointSet from './PointSet'
+import Queue from './Queue'
 
 class BreadthFirstSearch {
   constructor(gridState, cellsX, cellsY) {
@@ -31,20 +32,24 @@ class BreadthFirstSearch {
       this.obstacles.add(wall)
     })
 
-    // Holds the furthest frontier of our BFS
-    this.frontier = [ this.start ]
+    // Queue of paths, useful to backtrack
+    this.queue = new Queue()
+    this.queue.enqueue([this.start])
 
-    // Map of all visited nodes. Prevents infinite rescursion
-    this.visited = new PointSet()
-    this.visited.add(this.start)
+    // Set of visited nodes, fast lookup
+    this.visitedSet = new PointSet()
+    this.visitedSet.add(this.start)
+
+    // Array of visited nodes, for rendering
+    this.visited = []
 
     // Holds the y and x maximum bounds
     this.maxX = cellsX
     this.maxY = cellsY
 
     // Movement iterator
-    this.dx = [1, -1, 0, 0]
-    this.dy = [0, 0, 1, -1]
+    this.dx = [-1, 0, 1, 0]
+    this.dy = [0, -1, 0, 1]
 
     this.done = false
   }
@@ -57,7 +62,7 @@ class BreadthFirstSearch {
       coord.y >= 0               && 
       coord.y < this.maxY        &&
       !this.obstacles.has(coord) &&
-      !this.visited.has(coord)
+      !this.visitedSet.has(coord)
     )
   }
 
@@ -66,30 +71,39 @@ class BreadthFirstSearch {
   }
 
   clock() {
-    // Create deep copy of the frontier
-    const frontierCopy = [...this.frontier]
 
-    // Empty the frontier, so we can poplate it with new values
-    this.frontier = []
+    if (this.queue.isEmpty()) {
+      this.done = true
+      return
+    }
 
-    // For every value in the frontier
-    frontierCopy.forEach((coordinate) => {
-      for (let i = 0; i < 4; i++) {
-        const newCoord = {
-          x: coordinate.x + this.dx[i],
-          y: coordinate.y + this.dy[i],
-        }
+    // Get current working path
+    const path = this.queue.dequeue()
+    // Find last node in path
+    const node = path[path.length - 1]
 
-        // If the value we are currently looking at can be added, do it
-        if (this.valid(newCoord)) {
-          this.frontier.push(newCoord)
-          this.visited.add(newCoord)
-
-          if (this.isEnd(newCoord))
-            this.done = true
-        }
+    for (let i = 0; i < 4; i++) {
+      const adjNode = {
+        x: node.x + this.dx[i],
+        y: node.y + this.dy[i],
       }
-    })
+
+      if (this.valid(adjNode)) {
+
+        if (this.isEnd(adjNode)) {
+          this.done = true
+          this.path = path
+          return
+        }
+
+        this.visitedSet.add(adjNode)
+        this.visited.push(adjNode)
+
+        const newPath = [...path]
+        newPath.push(adjNode)
+        this.queue.enqueue(newPath)
+      }
+    }
   }
 }
 

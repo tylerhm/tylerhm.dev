@@ -32,14 +32,19 @@ function constructGridState(cellSize) {
 export default function useGridState(cellSize) {
   const [gridState, setGridState] = useState(constructGridState(cellSize))
 
-  useEffect(() => {
-    function handleResize() {
-      setGridState(constructGridState(cellSize))
-    }
+  function resetGridState() {
+    setGridState(constructGridState(cellSize))
+    console.log('resetting grid')
+  }
 
-    window.addEventListener('resize', handleResize)
-    return () => window.removeEventListener('resize', handleResize)
+  useEffect(() => {
+    resetGridState()
+
+    window.addEventListener('resize', resetGridState)
+    return () => window.removeEventListener('resize', resetGridState)
   }, [])
 
-  return { gridState, setGridState,  }
+  
+
+  return { gridState, setGridState, resetGridState }
 }

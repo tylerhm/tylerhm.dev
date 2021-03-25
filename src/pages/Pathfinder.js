@@ -44,7 +44,7 @@ const Pathfinder = () => {
   const cellSize = 50
 
   // gridState is updated when window size changes
-  const { gridState, setGridState } = useGridUpdater(cellSize)
+  const { gridState, setGridState, resetGridState } = useGridUpdater(cellSize)
 
   // Calculate necessary dimensions for pathfinding grid
   const cellsY = gridState.length
@@ -114,7 +114,9 @@ const Pathfinder = () => {
   const setState = (points, newState) => {
     const gridStateCopy = [...gridState]
     points.forEach(point => {
-      gridStateCopy[point.y][point.x] = newState
+      if (gridStateCopy[point.y][point.x] !== 'Start' && 
+          gridStateCopy[point.y][point.x] !== 'End')
+        gridStateCopy[point.y][point.x] = newState
     })
     setGridState(gridStateCopy)
   }
@@ -131,22 +133,15 @@ const Pathfinder = () => {
     // Then, clock it on an interval
     clocker = setInterval(() => {
 
-      // Mark the old frontier as visited
-      setState(pathfinder.frontier, 'Visited')
-
       // Clock the current pathfinder session
       pathfinder.clock()
 
-      // If we don't have anything to update, then stop the pathfinding
-      if (pathfinder.frontier.length === 0)
-        stopPathfinding()
-
       // Update the new frontier
-      setState(pathfinder.frontier, 'Frontier')
+      setState(pathfinder.visited, 'Visited')
 
       // We found the goal!
       if (pathfinder.done) {
-        // setState(pathfinder.frontier, 'Path')
+        setState(pathfinder.path, 'Path')
         stopPathfinding()
       }
 
@@ -184,10 +179,18 @@ const Pathfinder = () => {
             />
           </Nav>
           <Button
+            style={{margin: 5}}
             variant="outline-light"
             onClick={startPathfinding}
           >
             Pathfind!
+          </Button>
+          <Button
+            style={{margin: 5}}
+            variant="outline-light"
+            onClick={resetGridState}
+          >
+            Clear Grid
           </Button>
         </Navbar.Collapse>
       </Navbar>

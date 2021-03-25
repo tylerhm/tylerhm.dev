@@ -24,13 +24,18 @@ class Algorithms {
   }
 
   // Getter method for current frontier
-  get frontier() {
-    return this.controller.frontier
+  get visited() {
+    return this.controller.visited
   }
 
   // Getter method for status
   get done() {
     return this.controller.done
+  }
+
+  // Getter method for path
+  get path() {
+    return this.controller.path
   }
 
   // Clocks the selected algorithm

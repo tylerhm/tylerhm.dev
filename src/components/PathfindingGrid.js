@@ -8,9 +8,8 @@ const states = {
   Wall: Colors.darkest,
   Start: Colors.accent1,
   End: Colors.accent2,
-  Frontier: Colors.accent3,
-  Visited: Colors.accent1,
-  Path: Colors.accent2,
+  Visited: Colors.accent3,
+  Path: Colors.accent3dim,
 }
 
 const PathfindingGrid = ({ gridState, cellSize, cellClicked, style }) => {
