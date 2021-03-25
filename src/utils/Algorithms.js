@@ -28,6 +28,11 @@ class Algorithms {
     return this.controller.frontier
   }
 
+  // Getter method for status
+  get done() {
+    return this.controller.done
+  }
+
   // Clocks the selected algorithm
   clock() {
     this.controller.clock()

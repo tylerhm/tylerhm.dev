@@ -65,13 +65,12 @@ const PathfindingGrid = ({ dimensions, initialGridState, selectedAlgorithm }) =>
   // Updates the grid state, and notifies for re-render
   const propogateGridState = (xLoc, yLoc) => {
     gridState[yLoc][xLoc] = nextState(gridState[yLoc][xLoc])
-    if (gridState[yLoc][xLoc] === 'START') {
-      gridState[startCell.y][startCell.x] = 'EMPTY'
+    if (gridState[yLoc][xLoc] === 'START')
       setStartCell({x: xLoc, y: yLoc})
-    }
     forceUpdate()
   }
 
+  // Sets all points in the points array to frontier
   const setFrontier = (points) => {
     points.forEach(point => {
       gridState[point.y][point.x] = 'FRONTIER'
@@ -79,6 +78,7 @@ const PathfindingGrid = ({ dimensions, initialGridState, selectedAlgorithm }) =>
     forceUpdate()
   }
 
+  // Sets all points in the points array to visited
   const setVisited = (points) => {
     points.forEach(point => {
       gridState[point.y][point.x] = 'VISITED'
@@ -104,24 +104,16 @@ const PathfindingGrid = ({ dimensions, initialGridState, selectedAlgorithm }) =>
     }
   }
 
-  const getWalls = () => {
-    const walls = []
-    for (let y = 0; y < cellsY; y++)
-      for (let x = 0; x < cellsX; x++)
-        if (gridState[y][x] === 'WALL')
-          walls.push({x: x, y: y})
-    return walls
-  }
-
   // Main Pathfinding object
   const pathfinder = new Algorithms(selectedAlgorithm)
   let clocker = undefined
 
   // Starts a pathfinding session
   const startPathfinding = () => {
-    const walls = getWalls()
-    pathfinder.prepareController(startCell, walls, cellsX, cellsY)
+    pathfinder.prepareController(gridState, cellsX, cellsY)
     clocker = setInterval(() => {
+
+      console.log('clocking')
 
       // Remove the old frontier
       setVisited(pathfinder.frontier)
@@ -135,6 +127,10 @@ const PathfindingGrid = ({ dimensions, initialGridState, selectedAlgorithm }) =>
 
       // Update the new frontier
       setFrontier(pathfinder.frontier)
+
+      if (pathfinder.done)
+        stopPathfinding()
+
     }, 100)
   }
 
@@ -151,13 +147,6 @@ const PathfindingGrid = ({ dimensions, initialGridState, selectedAlgorithm }) =>
         onClick={startPathfinding}
       >
         Pathfind!
-      </Button>
-      <Button
-        style={{margin: 5}}
-        variant='danger'
-        onClick={stopPathfinding}
-      >
-        Stop
       </Button>
       <div style={styles.grid}>
         {grid}

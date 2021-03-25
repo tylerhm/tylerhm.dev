@@ -39,9 +39,7 @@ const Pathfinder = () => {
     for (let x = 0; x < cellsX; x++)
       initialGridState[y].push('EMPTY')
   }
-
-  initialGridState[0][0] = 'START'
-
+  
   return (
     <div className='layout'>
       <Navbar

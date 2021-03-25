@@ -1,13 +1,42 @@
 import PointSet from './PointSet'
 
 class BreadthFirstSearch {
-  constructor(startCoord, walls, cellsX, cellsY) {
+  constructor(gridState, cellsX, cellsY) {
+
+    // Metadata for search
+    this.walls = []
+    this.start = {}
+    this.end = {}
+
+    // Retrieve important metadata from gridState
+    for (let y = 0; y < cellsY; y++)
+      for (let x = 0; x < cellsX; x++)
+        switch (gridState[y][x]) {
+        case 'WALL':
+          this.walls.push({x: x, y: y})
+          break
+        case 'START':
+          this.start.x = x
+          this.start.y = y
+          break
+        case 'END':
+          this.end.x = x
+          this.end.y = y
+          break 
+        }
+
+    // Populate all obstacles
+    this.obstacles = new PointSet()
+    this.walls.forEach(wall => {
+      this.obstacles.add(wall)
+    })
+
     // Holds the furthest frontier of our BFS
-    this.frontier = [ startCoord ]
+    this.frontier = [ this.start ]
 
     // Map of all visited nodes. Prevents infinite rescursion
     this.visited = new PointSet()
-    this.visited.add(startCoord)
+    this.visited.add(this.start)
 
     // Holds the y and x maximum bounds
     this.maxX = cellsX
@@ -17,27 +46,23 @@ class BreadthFirstSearch {
     this.dx = [1, -1, 0, 0]
     this.dy = [0, 0, 1, -1]
 
-    // Bounds of the grid
-    this.cellsX = cellsX
-    this.cellsY = cellsY
-
-    // Populate all obstacles
-    this.obstacles = new PointSet()
-    walls.forEach(wall => {
-      this.obstacles.add(wall)
-    })
+    this.done = false
   }
 
   // Returns whether a new coord is valid
-  valid(newCoord) {
+  valid(coord) {
     return (
-      newCoord.x >= 0               && 
-      newCoord.x < this.cellsX      && 
-      newCoord.y >= 0               && 
-      newCoord.y < this.cellsY      &&
-      !this.obstacles.has(newCoord) &&
-      !this.visited.has(newCoord)
+      coord.x >= 0               && 
+      coord.x < this.maxX        && 
+      coord.y >= 0               && 
+      coord.y < this.maxY        &&
+      !this.obstacles.has(coord) &&
+      !this.visited.has(coord)
     )
+  }
+
+  isEnd(coord) {
+    return coord.x === this.end.x && coord.y === this.end.y
   }
 
   clock() {
@@ -59,6 +84,9 @@ class BreadthFirstSearch {
         if (this.valid(newCoord)) {
           this.frontier.push(newCoord)
           this.visited.add(newCoord)
+
+          if (this.isEnd(newCoord))
+            this.done = true
         }
       }
     })
