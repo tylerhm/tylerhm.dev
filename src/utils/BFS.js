@@ -1,7 +1,7 @@
 import PointSet from './PointSet'
 
 class BreadthFirstSearch {
-  constructor(startCoord, cellsX, cellsY) {
+  constructor(startCoord, walls, cellsX, cellsY) {
     // Holds the furthest frontier of our BFS
     this.frontier = [ startCoord ]
 
@@ -16,6 +16,28 @@ class BreadthFirstSearch {
     // Movement iterator
     this.dx = [1, -1, 0, 0]
     this.dy = [0, 0, 1, -1]
+
+    // Bounds of the grid
+    this.cellsX = cellsX
+    this.cellsY = cellsY
+
+    // Populate all obstacles
+    this.obstacles = new PointSet()
+    walls.forEach(wall => {
+      this.obstacles.add(wall)
+    })
+  }
+
+  // Returns whether a new coord is valid
+  valid(newCoord) {
+    return (
+      newCoord.x >= 0               && 
+      newCoord.x < this.cellsX      && 
+      newCoord.y >= 0               && 
+      newCoord.y < this.cellsY      &&
+      !this.obstacles.has(newCoord) &&
+      !this.visited.has(newCoord)
+    )
   }
 
   clock() {
@@ -34,7 +56,7 @@ class BreadthFirstSearch {
         }
 
         // If the value we are currently looking at can be added, do it
-        if (!this.visited.has(newCoord)) {
+        if (this.valid(newCoord)) {
           this.frontier.push(newCoord)
           this.visited.add(newCoord)
         }

@@ -14,10 +14,11 @@ class Algorithms {
     this.algorithm = this.algorithms[selectedIndex]
   }
 
-  prepareController(startCoord, cellsX, cellsY) {
+  // Prepares the pathfinding controller
+  prepareController(startCoord, walls, cellsX, cellsY) {
     switch (this.algorithm) {
     case this.algorithms[0]:
-      this.controller = new BFS(startCoord, cellsX, cellsY)
+      this.controller = new BFS(startCoord, walls, cellsX, cellsY)
       break
     }
   }

@@ -2,11 +2,9 @@ import './Pathfinder.css'
 import { useState } from 'react'
 import Navbar from 'react-bootstrap/Navbar'
 import Nav from 'react-bootstrap/Nav'
-import Button from 'react-bootstrap/Button'
 import ContextualDropdown from '../components/ContextualDropdown'
 import PathfindingGrid from '../components/PathfindingGrid'
 import useWindowDimensions from '../utils/WindowDimensions'
-import Algorithms from '../utils/Algorithms'
 
 const Pathfinder = () => {
   // Algorithms implemented by the Pathfinding grid
@@ -24,31 +22,25 @@ const Pathfinder = () => {
     setAlgorithm(algorithmIndex)
   }
 
-  // Main Pathfinding object
-  const pathfinder = new Algorithms(algorithm)
-  let clocker = undefined
-
-  // Starts a pathfinding session
-  const startPathfinding = () => {
-    pathfinder.prepareController({x: 5, y: 5}, 50, 50)
-    clocker = setInterval(() => {
-      pathfinder.clock()
-      console.log(pathfinder.frontier)
-    }, 1000)
-  }
-
-  // Clears the pathfinding interval
-  const stopPathfinding = () => {
-    clearInterval(clocker)
-  }
-
   // Retrieve window dimentions
   const { height, width } = useWindowDimensions()
 
   // Calculate necessary dimensions for pathfinding grid
-  const cellSize = Math.min(height, width) / 25
+  const cellSize = Math.round(Math.min(height, width) / 25)
   const cellsX = Math.round(width / cellSize) - 4
   const cellsY = Math.round(height / cellSize) - 4
+
+  // 2D grid of Cells
+  const initialGridState = []
+
+  // Construct the gridState object
+  for (let y = 0; y < cellsY; y++) {
+    initialGridState.push([])
+    for (let x = 0; x < cellsX; x++)
+      initialGridState[y].push('EMPTY')
+  }
+
+  initialGridState[0][0] = 'START'
 
   return (
     <div className='layout'>
@@ -66,20 +58,6 @@ const Pathfinder = () => {
               defaultSelected={algorithms[algorithm]}
               updateSelected={updateSelected}
             />
-            <Button
-              style={{margin: 5}}
-              variant='primary'
-              onClick={startPathfinding}
-            >
-              Pathfind!
-            </Button>
-            <Button
-              style={{margin: 5}}
-              variant='danger'
-              onClick={stopPathfinding}
-            >
-              Stop
-            </Button>
           </Nav>
         </Navbar.Collapse>
       </Navbar>
@@ -90,7 +68,8 @@ const Pathfinder = () => {
             height: cellsY,
             cellSize: cellSize,
           }}
-          selectedAlgorithm={0}
+          initialGridState={initialGridState}
+          selectedAlgorithm={algorithm}
         />
       </div>
     </div>
