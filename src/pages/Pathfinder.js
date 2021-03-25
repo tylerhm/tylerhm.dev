@@ -2,46 +2,53 @@ import './Pathfinder.css'
 import { useState } from 'react'
 import Navbar from 'react-bootstrap/Navbar'
 import Nav from 'react-bootstrap/Nav'
+import Button from 'react-bootstrap/Button'
 import ContextualDropdown from '../components/ContextualDropdown'
 import PathfindingGrid from '../components/PathfindingGrid.js'
-import useWindowDimensions from '../utils/WindowDimensions'
+// import useWindowDimensions from '../utils/WindowDimensions'
 import Colors from '../utils/ColorScheme'
+import useGridUpdater from '../utils/GridUpdater'
+import Algorithms from '../utils/Algorithms'
 
-// Algorithms implemented by the Pathfinding grid
+// Algorithms implemented by the Pathfinder
 const algorithms = [
   'Breadth-First Search',
   'Depth-First Search',
   'Greedy Depth-First Search',
-  'Dijkstra\'s Algorithm'
+  'Dijkstra\'s Algorithm',
 ]
 
-// Get the next button state
-const nextState = (state) => {
-  switch (state) {
-  case 'EMPTY': return 'WALL'
-  case 'WALL': return 'START'
-  case 'START': return 'END'
-  case 'END': return 'EMPTY'
-  }
-}
+// Placeable block types
+const blockTypes = [
+  'Wall',
+  'Start',
+  'End',
+]
 
 const Pathfinder = () => {
 
-
-  // Currently selected algorithm is stateful
+  // Currently selected algorithm and block type is stateful
   const [algorithm, setAlgorithm] = useState(0)
+  const [blockType, setBlockType] = useState(0)
 
-  const updateSelected = (algorithmIndex) => {
+  // Updates the algorithm by index
+  const updateSelectedAlgorithm = (algorithmIndex) => {
     setAlgorithm(algorithmIndex)
   }
 
-  // Retrieve window dimensions
-  const { height, width } = useWindowDimensions()
+  // Updates the block type by index
+  const updateSelectedBlockType = (blockTypeIndex) => {
+    setBlockType(blockTypeIndex)
+  }
+
+  const cellSize = 50
+
+  // gridState is updated when window size changes
+  const { gridState, setGridState } = useGridUpdater(cellSize)
 
   // Calculate necessary dimensions for pathfinding grid
-  const cellSize = Math.round(Math.min(height, width) / 25)
-  const cellsX = Math.round(width / cellSize) - 4
-  const cellsY = Math.round(height / cellSize) - 4
+  const cellsY = gridState.length
+  const cellsX = cellsY > 0 ? gridState[0].length : 0
 
   // Thickness of grid border
   const borderWidth = 3
@@ -61,34 +68,103 @@ const Pathfinder = () => {
     },
   }
 
-  // 2D grid of Cells
-  const initialGridState = []
-
-  // Construct the gridState object
-  for (let y = 0; y < cellsY; y++) {
-    initialGridState.push([])
-    for (let x = 0; x < cellsX; x++)
-      initialGridState[y].push('EMPTY')
+  // Maintain the current location of the start node
+  const [startPoint, setStartPoint] = useState({
+    x: undefined,
+    y: undefined,
+  })
+  
+  const validStart = () => {
+    return startPoint.y !== undefined && startPoint.x !== undefined
   }
 
-  // Gride state is.......... stateful.... lol
-  const [gridState, setGridState] = useState(initialGridState)
+  const updateStartPoint = (y, x) => {
+    const startPointCopy = JSON.parse(JSON.stringify(startPoint))
+    startPointCopy.y = y
+    startPointCopy.x = x
+    setStartPoint(startPointCopy)
+  }
+  // Removes data from the startPoint
+  const clearStartPoint = () => {
+    updateStartPoint(undefined, undefined)
+  }
 
   // Update a cell to the cyclic next state
   const cellClicked = (y, x) => {
-    console.log('clicked')
+
+    // Shallow copy the gridState
     const stateCopy = [...gridState]
-    stateCopy[y][x] = nextState(stateCopy[y][x])
+
+    // Clear start if we are replacing it, or adding a new one
+    if (validStart() && (stateCopy[y][x] === 'Start' || blockTypes[blockType] === 'Start')) {
+      stateCopy[startPoint.y][startPoint.x] = 'Empty'
+      clearStartPoint()
+    }
+
+    // If we are adding a start, remove the old one first
+    if (blockTypes[blockType] === 'Start') {
+      updateStartPoint(y, x)
+    }
+
+    stateCopy[y][x] = blockTypes[blockType]
     setGridState(stateCopy)
+  }
+
+  // Sets all points in the points array to visited
+  const setState = (points, newState) => {
+    const gridStateCopy = [...gridState]
+    points.forEach(point => {
+      gridStateCopy[point.y][point.x] = newState
+    })
+    setGridState(gridStateCopy)
+  }
+
+  // Main Pathfinding object
+  const pathfinder = new Algorithms(algorithm)
+  let clocker = undefined
+
+  // Starts a pathfinding session
+  const startPathfinding = () => {
+    // First prepare the controller
+    pathfinder.prepareController(gridState, cellsX, cellsY)
+
+    // Then, clock it on an interval
+    clocker = setInterval(() => {
+
+      // Mark the old frontier as visited
+      setState(pathfinder.frontier, 'Visited')
+
+      // Clock the current pathfinder session
+      pathfinder.clock()
+
+      // If we don't have anything to update, then stop the pathfinding
+      if (pathfinder.frontier.length === 0)
+        stopPathfinding()
+
+      // Update the new frontier
+      setState(pathfinder.frontier, 'Frontier')
+
+      // We found the goal!
+      if (pathfinder.done) {
+        // setState(pathfinder.frontier, 'Path')
+        stopPathfinding()
+      }
+
+    }, 100)
+  }
+
+  // Clears the pathfinding interval
+  const stopPathfinding = () => {
+    clearInterval(clocker)
   }
 
   return (
     <div className='layout'>
 
-      
       <Navbar
         className='nav'
-        bg='light'
+        bg='dark'
+        variant='dark'
         expand='lg'>
         <Navbar.Brand href='/home'>Home</Navbar.Brand>
         <Navbar.Toggle aria-controls='basic-navbar-nav' />
@@ -98,12 +174,23 @@ const Pathfinder = () => {
               id='Pathfinding algorithm selector'
               items={algorithms}
               defaultSelected={algorithms[algorithm]}
-              updateSelected={updateSelected}
+              updateSelected={updateSelectedAlgorithm}
+            />
+            <ContextualDropdown
+              id='Block type selector'
+              items={blockTypes}
+              defaultSelected={blockTypes[blockType]}
+              updateSelected={updateSelectedBlockType}
             />
           </Nav>
+          <Button
+            variant="outline-light"
+            onClick={startPathfinding}
+          >
+            Pathfind!
+          </Button>
         </Navbar.Collapse>
       </Navbar>
-
 
       <div className='content'>
         <PathfindingGrid 

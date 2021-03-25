@@ -12,14 +12,14 @@ class BreadthFirstSearch {
     for (let y = 0; y < cellsY; y++)
       for (let x = 0; x < cellsX; x++)
         switch (gridState[y][x]) {
-        case 'WALL':
+        case 'Wall':
           this.walls.push({x: x, y: y})
           break
-        case 'START':
+        case 'Start':
           this.start.x = x
           this.start.y = y
           break
-        case 'END':
+        case 'End':
           this.end.x = x
           this.end.y = y
           break 

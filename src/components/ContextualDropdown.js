@@ -4,16 +4,16 @@ import PropTypes from 'prop-types'
 
 // Extension of Bootstrap's NavDropdown component
 // Maintains currently selected element
-const ContextualDropdown = ({ id, items, defaultSelected, callback }) => {
+const ContextualDropdown = ({ id, items, defaultSelected, updateSelected }) => {
   // Selected item is stateful
   const [selectedItem, setSelectedItem] = useState(defaultSelected)
 
   // Sets the currently selected item
-  const selectItem = (key) => {
-    setSelectedItem(key)
+  const selectItem = (index) => {
+    setSelectedItem(items[index])
 
-    if (callback !== undefined)
-      callback(selectedItem)
+    if (updateSelected !== undefined)
+      updateSelected(index)
   }
 
   // The renderable dropdown items
@@ -24,7 +24,7 @@ const ContextualDropdown = ({ id, items, defaultSelected, callback }) => {
     dropdownItems.push(
       <NavDropdown.Item
         key={index}
-        onClick={() => selectItem(element)}
+        onClick={() => selectItem(index)}
       >
         {element}
       </NavDropdown.Item>
@@ -45,7 +45,7 @@ ContextualDropdown.propTypes = {
   id: PropTypes.string,
   items: PropTypes.array,
   defaultSelected: PropTypes.string,
-  callback: PropTypes.func
+  updateSelected: PropTypes.func
 }
 
 export default ContextualDropdown

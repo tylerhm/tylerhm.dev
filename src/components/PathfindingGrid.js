@@ -4,12 +4,13 @@ import Colors from '../utils/ColorScheme'
 
 // Manage all possible wall states
 const states = {
-  EMPTY: Colors.lightest,
-  WALL: Colors.darkest,
-  START: Colors.accent1,
-  END: Colors.accent2,
-  FRONTIER: Colors.accent3,
-  VISITED: Colors.accent1,
+  Empty: Colors.lightest,
+  Wall: Colors.darkest,
+  Start: Colors.accent1,
+  End: Colors.accent2,
+  Frontier: Colors.accent3,
+  Visited: Colors.accent1,
+  Path: Colors.accent2,
 }
 
 const PathfindingGrid = ({ gridState, cellSize, cellClicked, style }) => {
@@ -29,8 +30,6 @@ const PathfindingGrid = ({ gridState, cellSize, cellClicked, style }) => {
       )
     }
   }
-
-  console.log(grid)
 
   return (
     <div style={style}>
