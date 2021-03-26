@@ -1,5 +1,5 @@
 import PointSet from './PointSet'
-import Queue from './Queue'
+import Stack from './Stack'
 
 class BreadthFirstSearch {
   constructor(gridState, cellsX, cellsY) {
@@ -33,8 +33,8 @@ class BreadthFirstSearch {
     })
 
     // Queue of paths, useful to backtrack
-    this.queue = new Queue()
-    this.queue.enqueue([this.start])
+    this.stack = new Stack()
+    this.stack.push([this.start])
 
     // Set of visited nodes, fast lookup
     this.visitedSet = new PointSet()
@@ -72,7 +72,7 @@ class BreadthFirstSearch {
 
   clock() {
     // If there is nothing left to search, stop
-    if (this.queue.isEmpty()) {
+    if (this.stack.isEmpty()) {
       this.done = true
       this.path = []
     }
@@ -84,10 +84,10 @@ class BreadthFirstSearch {
     }
 
     // Get current working path
-    const path = this.queue.dequeue()
+    const path = this.stack.pop()
     // Find last node in path
     const node = path[path.length - 1]
-
+    
     if (this.valid(node)) {
 
       if (this.isEnd(node)) {
@@ -107,7 +107,7 @@ class BreadthFirstSearch {
 
         const newPath = [...path]
         newPath.push(adjNode)
-        this.queue.enqueue(newPath)
+        this.stack.push(newPath)
       }
     }
   }

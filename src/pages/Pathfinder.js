@@ -14,8 +14,8 @@ import Algorithms from '../utils/Algorithms'
 const algorithms = [
   'Breadth-First Search',
   'Depth-First Search',
-  'Greedy Depth-First Search',
-  'Dijkstra\'s Algorithm',
+  // 'Greedy Depth-First Search',
+  // 'Dijkstra\'s Algorithm',
 ]
 
 // Placeable block types
@@ -24,6 +24,8 @@ const blockTypes = [
   'Start',
   'End',
 ]
+
+const clockSpeed = 15
 
 const Pathfinder = () => {
 
@@ -69,7 +71,10 @@ const Pathfinder = () => {
   }
 
   // Will be true when done pathing
-  const [finishedPathing, setFinishedPathing] = useState(false)
+  const [pathing, setPathing] = useState(false)
+
+  // Will be true when pathing just finished
+  const [pathDisplayed, setPathDisplayed] = useState(false)
 
   // Maintain the current location of the start node
   const [startPoint, setStartPoint] = useState({
@@ -95,28 +100,44 @@ const Pathfinder = () => {
   // Update a cell to the cyclic next state
   const cellClicked = (y, x) => {
 
+    if (pathing)
+      return
+
     // Clear the fontier if necessary
-    if (finishedPathing) {
+    if (pathDisplayed) {
       clearVisitedAndPath()
-      setFinishedPathing(false)
+      setPathDisplayed(false)
     }
 
     // Shallow copy the gridState
-    const stateCopy = [...gridState]
+    const gridStateCopy = [...gridState]
 
-    // Clear start if we are replacing it, or adding a new one
-    if (validStart() && (stateCopy[y][x] === 'Start' || blockTypes[blockType] === 'Start')) {
-      stateCopy[startPoint.y][startPoint.x] = 'Empty'
-      clearStartPoint()
+    // Check the status of the current block
+    const clickedCellState = gridStateCopy[y][x]
+
+    // Are we erasing?
+    const erase = clickedCellState === blockTypes[blockType]
+
+    if (erase) {
+      // If the cell was start, then remove the tracking on start node.
+      if (clickedCellState === 'Start')
+        clearStartPoint()
+
+      // Empty the cell
+      gridStateCopy[y][x] = 'Empty'
+    }
+    else {
+      // If we are placing a start, update the start location
+      if (blockTypes[blockType] === 'Start') {
+        if (validStart())
+          gridStateCopy[startPoint.y][startPoint.x] = 'Empty'
+        updateStartPoint(y, x)
+      }
+
+      gridStateCopy[y][x] = blockTypes[blockType]
     }
 
-    // If we are adding a start, remove the old one first
-    if (blockTypes[blockType] === 'Start') {
-      updateStartPoint(y, x)
-    }
-
-    stateCopy[y][x] = blockTypes[blockType]
-    setGridState(stateCopy)
+    setGridState(gridStateCopy)
   }
 
   // Sets all points in the points array to visited
@@ -146,8 +167,22 @@ const Pathfinder = () => {
 
   // Starts a pathfinding session
   const startPathfinding = () => {
+
+    // If there is no start node, then don't start pathfinding
+    // Alert the user
+    if (!validStart() || pathing)
+      return
+
+    // If the path is still displayed, clear it.
+    if (pathDisplayed) {
+      clearVisitedAndPath()
+      setPathDisplayed(false)
+    }
+
     // First prepare the controller
     pathfinder.prepareController(gridState, cellsX, cellsY)
+
+    setPathing(true)
 
     // Then, clock it on an interval
     clocker = setInterval(() => {
@@ -155,17 +190,18 @@ const Pathfinder = () => {
       // Clock the current pathfinder session
       pathfinder.clock()
 
-      // Update the new frontier
-      setGridStateFromPoints(pathfinder.visited, 'Visited')
-
       // We found the goal!
       if (pathfinder.done) {
         setGridStateFromPoints(pathfinder.path, 'Path')
-        setFinishedPathing(true)
+        setPathDisplayed(true)
+        setPathing(false)
         stopPathfinding()
       }
+      else
+        // Update the new frontier
+        setGridStateFromPoints(pathfinder.visited, 'Visited')
 
-    }, 10)
+    }, clockSpeed)
   }
 
   // Clears the pathfinding interval
@@ -175,7 +211,6 @@ const Pathfinder = () => {
 
   return (
     <div className='layout'>
-
       <Navbar
         className='nav'
         bg='dark'
@@ -214,7 +249,7 @@ const Pathfinder = () => {
           </Button>
         </Navbar.Collapse>
       </Navbar>
-
+      
       <div className='content'>
         <PathfindingGrid 
           style={styles.gridContainer}

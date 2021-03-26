@@ -1,4 +1,5 @@
 import BFS from './BFS'
+import DFS from './DFS'
 
 // Clockable algorithm handler
 class Algorithms {
@@ -7,19 +8,21 @@ class Algorithms {
     this.algorithms = [
       'BFS', // Breadth-First Search
       'DFS', // Depth-First Search
-      'GDFS', // Greedy Depth-First Search
-      'DA', // Dijkstra's Algorithm
+      // 'GDFS', // Greedy Depth-First Search
+      // 'DA', // Dijkstra's Algorithm
     ]
 
     this.algorithm = this.algorithms[selectedIndex]
   }
 
   // Prepares the pathfinding controller
-  prepareController(startCoord, walls, cellsX, cellsY) {
+  prepareController(gridState, cellsX, cellsY) {
     switch (this.algorithm) {
     case this.algorithms[0]:
-      this.controller = new BFS(startCoord, walls, cellsX, cellsY)
+      this.controller = new BFS(gridState, cellsX, cellsY)
       break
+    case this.algorithms[1]:
+      this.controller = new DFS(gridState, cellsX, cellsY)
     }
   }
 

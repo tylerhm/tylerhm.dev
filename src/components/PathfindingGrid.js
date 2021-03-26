@@ -9,7 +9,7 @@ const states = {
   Start: Colors.accent1,
   End: Colors.accent2,
   Visited: Colors.accent3,
-  Path: Colors.accent3dim,
+  Path: Colors.path,
 }
 
 const PathfindingGrid = ({ gridState, cellSize, cellClicked, style }) => {
