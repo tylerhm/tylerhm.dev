@@ -6,9 +6,14 @@ function Homepage() {
   // Renderable cards
   const cardData = {
     'Pathfinder': {
-      image: '../logo192.png',
-      body: 'Check out this awesome pathfinding visualization, written entirely in Javascript!',
+      image: 'https://i.imgur.com/qc0Q9Hyl.png',
+      body: 'Awesome pathfinding visualization, written entirely in Javascript!',
       page: 'pathfinder',
+    },
+    'Custom Portfolio': {
+      image: 'https://imgur.com/xH8SHD7l.png',
+      body: 'Dynamic portfolio built from scratch with React and Bootstrap.',
+      page: 'custom-portfolio'
     },
   }
 

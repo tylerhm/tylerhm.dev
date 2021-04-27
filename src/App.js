@@ -13,6 +13,12 @@ function App() {
         <Route path='/pathfinder'>
           <Pathfinder />
         </Route>
+        <Route path='/custom-portfolio'>
+          {() => {
+            window.location.href = 'https://quirky-bohr-5f2abb.netlify.app'
+            return null
+          }}
+        </Route>
         <Route path='/home'>
           <Homepage />
         </Route>
