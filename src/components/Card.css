@@ -1,0 +1,22 @@
+.CardPicker {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  max-width: 80vw;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.card {
+  width: calc((150px + 10vmin));
+  margin: 10px;
+  background-color: var(--lightest);
+}
+
+.CardText {
+  font-size: calc((10px + 2vmin) / 2);
+}
+
+.CardHeader {
+  font-size: calc((10px + 2vmin));
+}

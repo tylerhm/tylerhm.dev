@@ -1,0 +1,22 @@
+.HomeLayout {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  min-height: 100vh;
+  min-width: 100vw;
+  background-color:var(--lightest);
+}
+
+.Header {
+  margin-top: 10vh;
+  margin-bottom: 10vh;
+}
+
+.Header h1 {
+  font-size: calc((10px + 2vmin) * 2);
+}
+
+.Header h3 {
+  font-size: calc((10px + 2vmin) / 1.25);
+}

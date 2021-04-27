@@ -1,0 +1,18 @@
+.layout {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.nav {
+  width: 100vw;
+}
+
+.content {
+  flex-grow: 1;
+  background-color: var(--lightest);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
