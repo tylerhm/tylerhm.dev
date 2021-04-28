@@ -10,14 +10,20 @@ function App() {
   return (
     <Router>
       <Switch>
-        <Route path='/pathfinder'>
-          <Pathfinder />
+        <Route path='/groov'>
+          {() => {
+            window.location.href = 'https://github.com/GroovTeam'
+            return null
+          }}
         </Route>
         <Route path='/custom-portfolio'>
           {() => {
-            window.location.href = 'https://quirky-bohr-5f2abb.netlify.app'
+            window.location.href = 'https://beariverairions.com'
             return null
           }}
+        </Route>
+        <Route path='/pathfinder'>
+          <Pathfinder />
         </Route>
         <Route path='/home'>
           <Homepage />

@@ -7,6 +7,8 @@
   --accent-3: #ffe66dff;
 }
 
+$darkest: #292f36ff;
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -19,4 +21,13 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+.btn-primary, .btn-primary:active, .btn-primary:visited {
+  border-color: darken($darkest, 5%) !important;
+  background-color: var(--darkest) !important;
+}
+
+.btn-primary:hover {
+  filter: brightness(80%);
 }

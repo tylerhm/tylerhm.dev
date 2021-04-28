@@ -38,9 +38,12 @@ const CardGroup = ({ cardData, title }) => {
   }
 
   const columns = []
-  columnData.forEach(col => {
+  columnData.forEach((col, index) => {
     columns.push(
-      <div className='Column'>
+      <div
+        key={`${actualColumns}-${index}`}
+        className='Column'
+      >
         {col}
       </div>
     )
