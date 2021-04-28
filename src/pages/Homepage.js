@@ -33,6 +33,7 @@ function Homepage() {
         </h1>
         <h3>
           <ReactTypingEffect
+            className='Typer'
             text={[
               'a developer 👨‍💻',
               'a student 📚',
@@ -45,9 +46,10 @@ function Homepage() {
             typingDelay={1000}
             eraseDelay={2500}
           />
+          come checkout my work!
         </h3>
       </div>
-      <CardGroup cardData={cardData} title='Projects:'/>
+      <CardGroup cardData={cardData}/>
     </div>
   )
 }

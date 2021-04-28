@@ -5,7 +5,7 @@ import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 import useWindowDimensions from '../utils/useWindowDimensions'
 
-const CardGroup = ({ cardData, title }) => {
+const CardGroup = ({ cardData }) => {
 
   const { height, width } = useWindowDimensions()
   const cardWidth = 150 + 0.1 * Math.min(height, width)
@@ -50,13 +50,8 @@ const CardGroup = ({ cardData, title }) => {
   })
 
   return (
-    <div>
-      <h5>
-        {title}
-      </h5>
-      <div className='ColumnContainer'>
-        {columns}
-      </div>
+    <div className='ColumnContainer'>
+      {columns}
     </div>
   )
 }
