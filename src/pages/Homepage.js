@@ -32,6 +32,7 @@ function Homepage() {
           Tyler Hostler-Mathis,
         </h1>
         <h3>
+          come checkout my work!
           <ReactTypingEffect
             className='Typer'
             text={[
@@ -39,14 +40,12 @@ function Homepage() {
               'a student 📚',
               'an intern 🌎',
               'a streamer 🔴',
-              'a gamer 🎮',
             ]}
             speed={50}
             eraseSpeed={50}
             typingDelay={1000}
             eraseDelay={2500}
           />
-          come checkout my work!
         </h3>
       </div>
       <CardGroup cardData={cardData}/>
