@@ -1,6 +1,5 @@
 import './Card.scss'
 import Card from 'react-bootstrap/Card'
-import Button from 'react-bootstrap/Button'
 import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 import useWindowDimensions from '../utils/useWindowDimensions'
