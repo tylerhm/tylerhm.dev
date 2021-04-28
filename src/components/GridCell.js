@@ -13,11 +13,8 @@ const GridCell = ({ color, size, cellClicked }) => {
   }
 
   return (
-    <a
-      onClick={cellClicked}>
-      <div
-        className='cell'
-        style={styles.cell} />
+    <a onClick={cellClicked}>
+      <div className='cell' style={styles.cell} />
     </a>
   )
 }

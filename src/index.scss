@@ -5,7 +5,10 @@
   --lightest: #f7fff7ff;
   --accent-2: #ff6b6bff;
   --accent-3: #ffe66dff;
+  overflow-x: hidden;
 }
+
+$darkest: #292f36ff;
 
 body {
   margin: 0;
@@ -19,4 +22,14 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+.btn-primary, .btn-primary:active, .btn-primary:visited {
+  font-size: calc((10px + 2vmin) / 2) !important;
+  border-color: darken($darkest, 5%) !important;
+  background-color: var(--darkest) !important;
+}
+
+.btn-primary:hover {
+  filter: brightness(80%);
 }

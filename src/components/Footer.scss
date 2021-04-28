@@ -1,0 +1,29 @@
+.footer {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 10vw;
+  width: 100vw;
+  background-color: white;
+
+  .copyright {
+    font-weight: 100;
+    font-style: normal;
+    font-size: small;
+
+    padding: 20px;
+  }
+
+  .socials {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+  }
+
+  a {
+    padding: 10px;
+    color: var(--black)
+  }
+}

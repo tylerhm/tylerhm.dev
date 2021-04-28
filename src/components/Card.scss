@@ -1,16 +1,33 @@
-.CardPicker {
+.ColumnContainer {
   display: flex;
   flex-direction: row;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   max-width: 80vw;
   align-items: flex-start;
   justify-content: center;
 }
 
+.Column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+
 .card {
-  width: calc((150px + 10vmin));
   margin: 10px;
+  transition: all 300ms;
   background-color: white;
+}
+
+.card:hover {
+  filter: brightness(95%);
+  transition: all 300ms;
+  transform: scale(1.05);
+}
+
+.card-header {
+  padding: 0;
 }
 
 .CardText {
@@ -19,4 +36,14 @@
 
 .CardHeader {
   font-size: calc((10px + 2vmin));
+}
+
+a {
+  color: inherit;
+  text-decoration: none !important;
+}
+
+
+a:hover {
+  color: inherit;
 }

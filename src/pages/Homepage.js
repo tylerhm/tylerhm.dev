@@ -5,42 +5,53 @@ import ReactTypingEffect from 'react-typing-effect'
 function Homepage() {
   // Renderable cards
   const cardData = {
-    'Pathfinder': {
-      image: 'https://i.imgur.com/qc0Q9Hyl.png',
-      body: 'Awesome pathfinding visualization, written entirely in Javascript!',
-      page: 'pathfinder',
+    'Groov': {
+      image: 'https://imgur.com/QwXe6X5l.png',
+      body: 'A music based social media that brings freestyle to the pubic. For this project, I took the role of Project Manager and Mobile Developer.',
+      page: 'groov',
     },
     'Custom Portfolio': {
       image: 'https://imgur.com/xH8SHD7l.png',
       body: 'Dynamic portfolio built from scratch with React and Bootstrap.',
-      page: 'custom-portfolio'
+      page: 'custom-portfolio',
+    },
+    'Pathfinder': {
+      image: 'https://imgur.com/qc0Q9Hyl.png',
+      body: 'Awesome pathfinding visualization, written entirely in Javascript!',
+      page: 'pathfinder',
+    },
+    'VR Molecule Builder': {
+      image: 'https://imgur.com/kQ2i8cal.png',
+      body: 'VR application that allows the user to build organic molecules. Build in an effort to improve stereochemistry education materials.',
+      page: 'molecule-builder',
     },
   }
 
   return (
     <div className='HomeLayout'>
       <div className='Header'>
-        <h3>
+        <div className='Sub'>
           Hi :) I&apos;m
-        </h3>
-        <h1>
+        </div>
+        <div>
           Tyler Hostler-Mathis,
-        </h1>
-        <h3>
+        </div>
+        <div className='Sub'>
+          come checkout my work!
           <ReactTypingEffect
+            className='Typer'
             text={[
               'a developer 👨‍💻',
               'a student 📚',
               'an intern 🌎',
               'a streamer 🔴',
-              'a gamer 🎮',
             ]}
             speed={50}
             eraseSpeed={50}
             typingDelay={1000}
             eraseDelay={2500}
           />
-        </h3>
+        </div>
       </div>
       <CardGroup cardData={cardData}/>
     </div>
