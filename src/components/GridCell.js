@@ -1,4 +1,4 @@
-import './GridCell.css'
+import './GridCell.scss'
 import PropTypes from 'prop-types'
 
 const GridCell = ({ color, size, cellClicked }) => {

@@ -1,4 +1,4 @@
-import './Card.css'
+import './Card.scss'
 import Card from 'react-bootstrap/Card'
 import Button from 'react-bootstrap/Button'
 import PropTypes from 'prop-types'

@@ -1,4 +1,4 @@
-import './Homepage.css'
+import './Homepage.scss'
 import CardGroup from '../components/CardGroup'
 import ReactTypingEffect from 'react-typing-effect'
 
