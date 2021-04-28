@@ -1,14 +1,20 @@
-.CardPicker {
+.ColumnContainer {
   display: flex;
   flex-direction: row;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   max-width: 80vw;
   align-items: flex-start;
   justify-content: center;
 }
 
+.Column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+
 .card {
-  width: calc((150px + 10vmin));
   margin: 10px;
   background-color: white;
 }
