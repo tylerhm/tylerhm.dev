@@ -30,13 +30,13 @@ function Homepage() {
   return (
     <div className='HomeLayout'>
       <div className='Header'>
-        <h3>
+        <div className='Sub'>
           Hi :) I&apos;m
-        </h3>
-        <h1>
+        </div>
+        <div>
           Tyler Hostler-Mathis,
-        </h1>
-        <h3>
+        </div>
+        <div className='Sub'>
           come checkout my work!
           <ReactTypingEffect
             className='Typer'
@@ -51,7 +51,7 @@ function Homepage() {
             typingDelay={1000}
             eraseDelay={2500}
           />
-        </h3>
+        </div>
       </div>
       <CardGroup cardData={cardData}/>
     </div>

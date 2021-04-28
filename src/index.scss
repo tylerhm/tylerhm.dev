@@ -25,6 +25,7 @@ code {
 }
 
 .btn-primary, .btn-primary:active, .btn-primary:visited {
+  font-size: calc((10px + 2vmin) / 2) !important;
   border-color: darken($darkest, 5%) !important;
   background-color: var(--darkest) !important;
 }

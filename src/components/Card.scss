@@ -16,7 +16,18 @@
 
 .card {
   margin: 10px;
+  transition: all 300ms;
   background-color: white;
+}
+
+.card:hover {
+  filter: brightness(95%);
+  transition: all 300ms;
+  transform: scale(1.05);
+}
+
+.card-header {
+  padding: 0;
 }
 
 .CardText {
@@ -25,4 +36,14 @@
 
 .CardHeader {
   font-size: calc((10px + 2vmin));
+}
+
+a {
+  color: inherit;
+  text-decoration: none !important;
+}
+
+
+a:hover {
+  color: inherit;
 }

@@ -21,18 +21,19 @@ const CardGroup = ({ cardData }) => {
   let index = 0
   for (const [title, meta] of Object.entries(cardData)) {
     columnData[index % actualColumns].push(
-      <Card key={`card-${meta.page}`} style={{width: `${cardWidth}px`}}>
-        <Card.Img variant='top' src={meta.image} />
-        <Card.Body>
-          <Card.Title className='CardHeader'>{title}</Card.Title>
-          <Card.Text className='CardText'>
-            {meta.body}
-          </Card.Text>
-          <Link to={`/${meta.page}`}>
-            <Button variant='primary'>Check it out!</Button>
-          </Link>
-        </Card.Body>
-      </Card>
+      <Link to={`/${meta.page}`}>
+        <Card key={`card-${meta.page}`} style={{width: `${cardWidth}px`}}>
+          <Card.Header>
+            <Card.Img variant='top' src={meta.image} />
+          </Card.Header>
+          <Card.Body>
+            <Card.Title className='CardHeader'>{title}</Card.Title>
+            <Card.Text className='CardText'>
+              {meta.body}
+            </Card.Text>
+          </Card.Body>
+        </Card>
+      </Link>
     )
     index++
   }
