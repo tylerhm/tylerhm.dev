@@ -7,7 +7,7 @@ function Homepage() {
   const cardData = {
     'Groov': {
       image: 'https://imgur.com/QwXe6X5l.png',
-      body: 'A music based social media that brings freestyle to the pubic.',
+      body: 'A music based social media that brings freestyle to the pubic. For this project, I took the role of Project Manager and Mobile Developer.',
       page: 'groov',
     },
     'Custom Portfolio': {
@@ -19,6 +19,11 @@ function Homepage() {
       image: 'https://imgur.com/qc0Q9Hyl.png',
       body: 'Awesome pathfinding visualization, written entirely in Javascript!',
       page: 'pathfinder',
+    },
+    'VR Molecule Builder': {
+      image: 'https://imgur.com/kQ2i8cal.png',
+      body: 'VR application that allows the user to build organic molecules. Build in an effort to improve stereochemistry education materials.',
+      page: 'molecule-builder',
     },
   }
 
