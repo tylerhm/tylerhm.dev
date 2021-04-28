@@ -15,67 +15,6 @@ function Homepage() {
       body: 'Dynamic portfolio built from scratch with React and Bootstrap.',
       page: 'custom-portfolio'
     },
-    'Custom fPortfolio': {
-      image: 'https://imgur.com/xH8SHD7l.png',
-      body: 'Dynamic portfolio built from scratch with React and Bootstrap.',
-      page: 'custom-portfolio'
-    },
-    'Customs Portfolio': {
-      image: 'https://imgur.com/xH8SHD7l.png',
-      body: 'Dynamic portfolio built from scratch with React and Bootstrap.',
-      page: 'custom-portfolio'
-    },
-    'Custom sPortfolio': {
-      image: 'https://imgur.com/xH8SHD7l.png',
-      body: 'Dynamic portfolio built from scratch with React and Bootstrap.',
-      page: 'custom-portfolio'
-    },
-    'Custom dPortfolio': {
-      image: 'https://imgur.com/xH8SHD7l.png',
-      body: 'Dynamic portfolio built from scratch with React and Bootstrap.',
-      page: 'custom-portfolio'
-    },
-    'Custom gPortfolio': {
-      image: 'https://imgur.com/xH8SHD7l.png',
-      body: 'Dynamic portfolio built from scratch with React and Bootstrap.',
-      page: 'custom-portfolio'
-    },
-    'Custom fPofrtfolio': {
-      image: 'https://imgur.com/xH8SHD7l.png',
-      body: 'Dynamic portfolio built from scratch with React and Bootstrap.',
-      page: 'custom-portfolio'
-    },
-    'Customf Portfolio': {
-      image: 'https://imgur.com/xH8SHD7l.png',
-      body: 'Dynamic portfolio built from scratch with React and Bootstrap.',
-      page: 'custom-portfolio'
-    },
-    'Custom ePortfolio': {
-      image: 'https://imgur.com/xH8SHD7l.png',
-      body: 'Dynamic portfolio built from scratch with React and Bootstrap.',
-      page: 'custom-portfolio'
-    },
-    'Custom dPordtfolio': {
-      image: 'https://imgur.com/xH8SHD7l.png',
-      body: 'Dynamic portfolio built from scratch with React and Bootstrap.',
-      page: 'custom-portfolio'
-    },
-    'Custom cPortfolio': {
-      image: 'https://imgur.com/xH8SHD7l.png',
-      body: 'Dynamic portfolio built from scratch with React and Bootstrap.',
-      page: 'custom-portfolio'
-    },
-    'Custom bPortfolio': {
-      image: 'https://imgur.com/xH8SHD7l.png',
-      body: 'Dynamic portfolio built from scratch with React and Bootstrap.',
-      page: 'custom-portfolio'
-    },
-    'Custom aPortfolio': {
-      image: 'https://imgur.com/xH8SHD7l.png',
-      body: 'Dynamic portfolio built from scratch with React and Bootstrap.',
-      page: 'custom-portfolio'
-    },
-
   }
 
   return (
