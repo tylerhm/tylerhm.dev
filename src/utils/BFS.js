@@ -83,31 +83,36 @@ class BreadthFirstSearch {
       return
     }
 
-    // Get current working path
-    const path = this.queue.dequeue()
-    // Find last node in path
-    const node = path[path.length - 1]
+    // Get number of iterations necessary to advance
+    const frontierSize = this.queue.length
 
-    if (this.valid(node)) {
-
-      if (this.isEnd(node)) {
-        this.done = true
-        this.path = path
-        return
-      }
-
-      this.visitedSet.add(node)
-      this.visited.push(node)
-
-      for (let i = 0; i < 4; i++) {
-        const adjNode = {
-          x: node.x + this.dx[i],
-          y: node.y + this.dy[i],
+    for (let i = 0; i < frontierSize; i++) {
+      // Get current working path
+      const path = this.queue.dequeue()
+      // Find last node in path
+      const node = path[path.length - 1]
+  
+      if (this.valid(node)) {
+  
+        if (this.isEnd(node)) {
+          this.done = true
+          this.path = path
+          return
         }
 
-        const newPath = [...path]
-        newPath.push(adjNode)
-        this.queue.enqueue(newPath)
+        this.visitedSet.add(node)
+        this.visited.push(node)
+  
+        for (let i = 0; i < 4; i++) {
+          const adjNode = {
+            x: node.x + this.dx[i],
+            y: node.y + this.dy[i],
+          }
+  
+          const newPath = [...path]
+          newPath.push(adjNode)
+          this.queue.enqueue(newPath)
+        }
       }
     }
   }

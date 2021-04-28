@@ -25,7 +25,7 @@ const blockTypes = [
   'End',
 ]
 
-const clockSpeed = 15
+const clockSpeed = 50
 
 const Pathfinder = () => {
 
