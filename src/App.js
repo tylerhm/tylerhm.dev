@@ -11,7 +11,6 @@ import Pathfinder from './pages/Pathfinder'
 function App() {
   return (
     <Router>
-      
       <Switch>
 
         <Route path='/pathfinder'>
@@ -27,6 +26,7 @@ function App() {
         </Route>
 
       </Switch>
+      
       <Footer />
     </Router>
   )

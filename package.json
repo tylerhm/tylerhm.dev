@@ -13,6 +13,7 @@
     "react-icons": "^4.2.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.3",
+    "react-scroll-parallax": "^2.4.0",
     "react-typing-effect": "^2.0.5",
     "sass": "^1.32.11",
     "web-vitals": "^1.0.1"
