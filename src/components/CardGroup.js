@@ -20,11 +20,14 @@ const CardGroup = ({ cardData }) => {
   let index = 0
   for (const [title, meta] of Object.entries(cardData)) {
     columnData[index % actualColumns].push(
-      <Link to={meta.external ? '/home' : `/${meta.page}`} onClick={() => {
-        if (meta.external)
-          window.location.href = meta.page
-      }}>
-        <Card key={`card-${meta.page}`} style={{width: `${cardWidth}px`}}>
+      <Link
+        key={`card-${meta.page}`}
+        to={meta.external ? '/home' : `/${meta.page}`}
+        onClick={() => {
+          if (meta.external)
+            window.location.href = meta.page
+        }}>
+        <Card style={{width: `${cardWidth}px`}}>
           <Card.Header>
             <Card.Img variant='top' src={meta.image} />
           </Card.Header>
