@@ -7,7 +7,7 @@ class BreadthFirstSearch {
     // Metadata for search
     this.walls = []
     this.start = {}
-    this.end = {}
+    this.endsArray = []
 
     // Retrieve important metadata from gridState
     for (let y = 0; y < cellsY; y++)
@@ -21,8 +21,7 @@ class BreadthFirstSearch {
           this.start.y = y
           break
         case 'End':
-          this.end.x = x
-          this.end.y = y
+          this.endsArray.push({x: x, y: y})
           break 
         }
 
@@ -30,6 +29,12 @@ class BreadthFirstSearch {
     this.obstacles = new PointSet()
     this.walls.forEach(wall => {
       this.obstacles.add(wall)
+    })
+
+    // Populate the ends
+    this.ends = new PointSet()
+    this.ends.forEach(end => {
+      this.ends.add(end)
     })
 
     // Queue of paths, useful to backtrack
@@ -67,7 +72,7 @@ class BreadthFirstSearch {
   }
 
   isEnd(coord) {
-    return coord.x === this.end.x && coord.y === this.end.y
+    return this.ends.has(coord)
   }
 
   clock() {

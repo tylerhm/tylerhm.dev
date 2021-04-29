@@ -13,13 +13,13 @@ const GridCell = ({ color, size, cellClicked, mouseDown }) => {
   }
 
   return (
-    <a
-      onClick={cellClicked}
+    <div
+      onMouseDown={cellClicked}
       onMouseEnter={mouseDown ? cellClicked : undefined}
       onDragStart={e => e.preventDefault()}
     >
       <div className='cell' style={styles.cell} />
-    </a>
+    </div>
   )
 }
 
