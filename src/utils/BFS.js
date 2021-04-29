@@ -33,7 +33,7 @@ class BreadthFirstSearch {
 
     // Populate the ends
     this.ends = new PointSet()
-    this.ends.forEach(end => {
+    this.endsArray.forEach(end => {
       this.ends.add(end)
     })
 
