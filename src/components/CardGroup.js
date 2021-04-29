@@ -7,7 +7,7 @@ import useWindowDimensions from '../utils/useWindowDimensions'
 const CardGroup = ({ cardData }) => {
 
   const { height, width } = useWindowDimensions()
-  const cardWidth = 150 + 0.1 * Math.min(height, width)
+  const cardWidth = 200 + 0.1 * Math.min(height, width)
   const possibleColumns = Math.floor((0.8 * width) / cardWidth)
   const numEntries = Object.keys(cardData).length
   const actualColumns = numEntries >= possibleColumns ? possibleColumns : numEntries
@@ -20,7 +20,10 @@ const CardGroup = ({ cardData }) => {
   let index = 0
   for (const [title, meta] of Object.entries(cardData)) {
     columnData[index % actualColumns].push(
-      <Link to={`/${meta.page}`}>
+      <Link to={meta.external ? '/home' : `/${meta.page}`} onClick={() => {
+        if (meta.external)
+          window.location.href = meta.page
+      }}>
         <Card key={`card-${meta.page}`} style={{width: `${cardWidth}px`}}>
           <Card.Header>
             <Card.Img variant='top' src={meta.image} />
@@ -58,7 +61,6 @@ const CardGroup = ({ cardData }) => {
 
 CardGroup.propTypes = {
   cardData: PropTypes.object.isRequired,
-  title: PropTypes.string,
 }
 
 export default CardGroup
