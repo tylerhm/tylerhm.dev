@@ -6,6 +6,12 @@ import useWindowDimensions from '../utils/useWindowDimensions'
 
 const CardGroup = ({ cardData }) => {
 
+  // Check if a link needs to be followed externally.
+  const followLink = meta => {
+    if (!meta.external) return
+    window.location.href = meta.page
+  }
+
   const { height, width } = useWindowDimensions()
   const cardWidth = 200 + 0.1 * Math.min(height, width)
   const possibleColumns = Math.floor((0.8 * width) / cardWidth)
@@ -23,10 +29,7 @@ const CardGroup = ({ cardData }) => {
       <Link
         key={`card-${meta.page}`}
         to={meta.external ? '/home' : `/${meta.page}`}
-        onClick={() => {
-          if (meta.external)
-            window.location.href = meta.page
-        }}>
+        onClick={() => followLink(meta)}>
         <Card style={{width: `${cardWidth}px`}}>
           <Card.Header>
             <Card.Img variant='top' src={meta.image} />

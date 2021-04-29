@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import PropTypes from 'prop-types'
 import GridCell from './GridCell'
 import Colors from '../utils/ColorScheme'
@@ -14,6 +15,11 @@ const states = {
 
 const PathfindingGrid = ({ gridState, cellSize, cellClicked, style }) => {
 
+  const [mouseDown, setMouseDown] = useState(false)
+
+  document.body.onmousedown = () => setMouseDown(true)
+  document.body.onmouseup = () => setMouseDown(false)
+
   // Construct the grid
   const grid = []
   for (let y = 0; y < gridState.length; y++) {
@@ -25,6 +31,7 @@ const PathfindingGrid = ({ gridState, cellSize, cellClicked, style }) => {
           color={states[gridState[y][x]]}
           size={cellSize}
           cellClicked={() => cellClicked(y, x)}
+          mouseDown={mouseDown}
         />
       )
     }
