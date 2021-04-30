@@ -9,8 +9,18 @@
 
   .CardGroupContainer {
     display: flex;
+    flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     width: 100vw;
+    margin-bottom: 100px;
+  }
+
+  .CardGroupHeader {
+    display: inline-block;
+    text-align: start;
+    margin-bottom: 10vh;
+    font-size: calc(min(calc(10px + 2vw), 8vmin) * 1.5);
+    font-weight: 500;
   }
 }

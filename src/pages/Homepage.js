@@ -8,6 +8,9 @@ function Homepage() {
     <div className='HomeLayout'>
       <Banner />
       <div className='CardGroupContainer'>
+        <div className='CardGroupHeader'>
+          Highlights
+        </div>
         <CardGroup cardData={Cards}/>
       </div>
     </div>
