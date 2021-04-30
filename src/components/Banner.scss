@@ -1,8 +1,7 @@
 .Banner {
 
-  --scalar: calc(10px + 2vw);
+  --scalar: min(calc(10px + 2vw), 8vmin);
   
-  position: relative;
   min-height: 100vh;
   width: 100vw;
   text-align: center;
@@ -17,7 +16,7 @@
   .Header {
     display: inline-block;
     text-align: start;
-    margin-top: 25vh;
+    margin-top: 20vh;
     font-size: calc(var(--scalar) * 2);
     font-weight: 500;
   }

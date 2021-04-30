@@ -3,6 +3,7 @@ import { useState } from 'react'
 import ReactTypingEffect from 'react-typing-effect'
 import { IoIosArrowDown } from 'react-icons/io'
 import { useScrollPosition } from '@n8tb1t/use-scroll-position'
+import Socials from '../components/Socials'
 
 const Banner = () => {
 
@@ -52,6 +53,7 @@ const Banner = () => {
           />
         </div>
       </div>
+      <Socials />
       <div className='ScrollIndicatorContainer' style={scrollIndicatorStyle}>
         <IoIosArrowDown className='ScrollIndicator' />
       </div>

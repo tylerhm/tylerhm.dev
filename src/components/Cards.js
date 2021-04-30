@@ -14,7 +14,7 @@ const Cards = {
   },
   'Custom Portfolio': {
     image: 'https://imgur.com/xH8SHD7l.png',
-    body: 'Dynamic portfolio built from scratch with React and Bootstrap.',
+    body: 'Dynamic portfolio built from scratch with React and Bootstrap, complete with Google Captcha V3 and automated email forms.',
     page: 'https://beariverairions.com',
     external: true,
   },
