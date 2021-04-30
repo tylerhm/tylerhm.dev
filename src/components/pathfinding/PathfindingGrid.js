@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import PropTypes from 'prop-types'
 import GridCell from './GridCell'
-import Colors from '../utils/ColorScheme'
+import Colors from '../../utils/ColorScheme'
 
 // Manage all possible wall states
 const states = {

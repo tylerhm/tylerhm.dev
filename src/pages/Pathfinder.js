@@ -4,11 +4,10 @@ import Navbar from 'react-bootstrap/Navbar'
 import Nav from 'react-bootstrap/Nav'
 import Button from 'react-bootstrap/Button'
 import ContextualDropdown from '../components/ContextualDropdown'
-import PathfindingGrid from '../components/PathfindingGrid.js'
-// import useWindowDimensions from '../utils/WindowDimensions'
+import PathfindingGrid from '../components/pathfinding/PathfindingGrid.js'
 import Colors from '../utils/ColorScheme'
 import useGridUpdater from '../utils/GridUpdater'
-import Algorithms from '../utils/Algorithms'
+import Algorithms from '../utils/pathfinding/Algorithms'
 
 // Algorithms implemented by the Pathfinder
 const algorithms = [
