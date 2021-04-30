@@ -13,7 +13,7 @@ import Algorithms from '../utils/Algorithms'
 // Algorithms implemented by the Pathfinder
 const algorithms = [
   'Breadth-First Search',
-  'Depth-First Search',
+  // 'Depth-First Search',
   // 'Greedy Depth-First Search',
   // 'Dijkstra\'s Algorithm',
 ]
