@@ -7,7 +7,9 @@ function Homepage() {
   return (
     <div className='HomeLayout'>
       <Banner />
-      <CardGroup cardData={Cards}/>
+      <div className='CardGroupContainer'>
+        <CardGroup cardData={Cards}/>
+      </div>
     </div>
   )
 }

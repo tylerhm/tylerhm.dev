@@ -36,7 +36,7 @@ const Banner = () => {
           Tyler Hostler-Mathis,
         </div>
         <div className='Sub'>
-          come checkout my work!
+          check out my work!
           <ReactTypingEffect
             className='Typer'
             text={[
