@@ -13,7 +13,8 @@ const Socials = () => {
 
   // Handle the style that should be applied to our social buttons
   const [socialStyles, setSocialStyles] = useState({
-    gap: '40px',
+    marginLeft: '20px',
+    marginRight: '20px',
     opacity: '100%',
   })
 
@@ -25,7 +26,8 @@ const Socials = () => {
     const opacity = 1 - progress * 2
 
     const newStyle = {
-      gap: `${gap}px`,
+      marginLeft: `${gap / 2}px`,
+      marginRight: `${gap / 2}px`,
       opacity: `${opacity}`,
     }
 
@@ -35,17 +37,37 @@ const Socials = () => {
   }, [socialStyles])
 
   return (
-    <div className='Socials' style={socialStyles}>
-      <a className='GitHub' href='https://github.com/TylerMathis' target='__blank'>
+    <div className='Socials'>
+      <a
+        className='GitHub'
+        href='https://github.com/TylerMathis'
+        target='__blank'
+        style={socialStyles}
+      >
         <FaGithub />
       </a>
-      <a className='LinkedIn' href='https://linkedin.com/in/TylerHostlerMathis' target='__blank'>
+      <a
+        className='LinkedIn'
+        href='https://linkedin.com/in/TylerHostlerMathis'
+        target='__blank'
+        style={socialStyles}
+      >
         <FaLinkedin />
       </a>
-      <a className='Mail' href='mailto:tylerhm.dev@gmail.com' target='__blank'>
+      <a
+        className='Mail'
+        href='mailto:tylerhm.dev@gmail.com'
+        target='__blank'
+        style={socialStyles}
+      >
         <MdMail />
       </a>
-      <a className='Resume' href={resume} download>
+      <a
+        className='Resume'
+        href={resume}
+        download
+        style={socialStyles}
+      >
         <FaCloudDownloadAlt  />
       </a>
     </div>

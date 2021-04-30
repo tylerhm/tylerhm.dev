@@ -5,10 +5,13 @@
   --lightest: #f7fff7ff;
   --accent-2: #ff6b6bff;
   --accent-3: #ffe66dff;
-  overflow-x: hidden;
 }
 
 $darkest: #292f36ff;
+
+.OverflowWrapper {
+  overflow-x: hidden;
+}
 
 body {
   margin: 0;

@@ -5,7 +5,7 @@ import Colors from '../utils/ColorScheme'
 
 // Manage all possible wall states
 const states = {
-  Empty: Colors.lightest,
+  Empty: 'white',
   Wall: Colors.darkest,
   Start: Colors.accent1,
   End: Colors.accent2,
