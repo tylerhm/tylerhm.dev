@@ -3,7 +3,7 @@ import { useState } from 'react'
 import {
   FaGithub,
   FaLinkedin,
-  FaCloudDownloadAlt,
+  FaFileDownload,
 } from 'react-icons/fa'
 import { MdMail } from 'react-icons/md'
 import { useScrollPosition } from '@n8tb1t/use-scroll-position'
@@ -68,7 +68,7 @@ const Socials = () => {
         download
         style={socialStyles}
       >
-        <FaCloudDownloadAlt  />
+        <FaFileDownload  />
       </a>
     </div>
   )
