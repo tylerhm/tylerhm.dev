@@ -88,32 +88,33 @@ class BreadthFirstSearch {
       return
     }
 
+    // Clear the current visited array for visualization
+    this.visited = []
+
     // Get current working path
     const path = this.stack.pop()
     // Find last node in path
     const node = path[path.length - 1]
-    
-    if (this.valid(node)) {
 
-      if (this.isEnd(node)) {
+    for (let i = 0; i < 4; i++) {
+      const adjNode = {
+        x: node.x + this.dx[i],
+        y: node.y + this.dy[i],
+      }
+
+      if (!this.valid(adjNode)) continue
+      if (this.isEnd(adjNode)) {
         this.done = true
         this.path = path
         return
       }
 
-      this.visitedSet.add(node)
-      this.visited.push(node)
+      this.visitedSet.add(adjNode)
+      this.visited.push(adjNode)
 
-      for (let i = 0; i < 4; i++) {
-        const adjNode = {
-          x: node.x + this.dx[i],
-          y: node.y + this.dy[i],
-        }
-
-        const newPath = [...path]
-        newPath.push(adjNode)
-        this.stack.push(newPath)
-      }
+      const newPath = [...path]
+      newPath.push(adjNode)
+      this.stack.push(newPath)
     }
   }
 }
