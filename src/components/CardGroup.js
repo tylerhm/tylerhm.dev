@@ -6,12 +6,6 @@ import useWindowDimensions from '../utils/useWindowDimensions'
 
 const CardGroup = ({ cardData }) => {
 
-  // Check if a link needs to be followed externally.
-  const followLink = meta => {
-    if (!meta.external) return
-    window.location.href = meta.page
-  }
-
   const { height, width } = useWindowDimensions()
   const cardWidth = 200 + 0.1 * Math.min(height, width)
   const possibleColumns = Math.floor((0.8 * width) / cardWidth)
@@ -25,24 +19,47 @@ const CardGroup = ({ cardData }) => {
   // Create card renderable for every card data
   let index = 0
   for (const [title, meta] of Object.entries(cardData)) {
-    columnData[index % actualColumns].push(
-      <Link
-        key={`card-${meta.page}`}
-        to={meta.external ? '/home' : `/${meta.page}`}
-        onClick={() => followLink(meta)}>
-        <Card style={{width: `${cardWidth}px`}}>
-          <Card.Header>
-            <Card.Img variant='top' src={meta.image} />
-          </Card.Header>
-          <Card.Body>
-            <Card.Title className='CardHeader'>{title}</Card.Title>
-            <Card.Text className='CardText'>
-              {meta.body}
-            </Card.Text>
-          </Card.Body>
-        </Card>
-      </Link>
-    )
+    if (meta.external) {
+      columnData[index % actualColumns].push(
+        <a
+          key={`card-${meta.page}`}
+          href={meta.page}
+          target='__blank'
+        >
+          <Card style={{width: `${cardWidth}px`}}>
+            <Card.Header>
+              <Card.Img variant='top' src={meta.image} />
+            </Card.Header>
+            <Card.Body>
+              <Card.Title className='CardHeader'>{title}</Card.Title>
+              <Card.Text className='CardText'>
+                {meta.body}
+              </Card.Text>
+            </Card.Body>
+          </Card>
+        </a>
+      )
+    }
+    else {
+      columnData[index % actualColumns].push(
+        <Link
+          key={`card-${meta.page}`}
+          to={`/${meta.page}`}
+        >
+          <Card style={{width: `${cardWidth}px`}}>
+            <Card.Header>
+              <Card.Img variant='top' src={meta.image} />
+            </Card.Header>
+            <Card.Body>
+              <Card.Title className='CardHeader'>{title}</Card.Title>
+              <Card.Text className='CardText'>
+                {meta.body}
+              </Card.Text>
+            </Card.Body>
+          </Card>
+        </Link>
+      )
+    }
     index++
   }
 
