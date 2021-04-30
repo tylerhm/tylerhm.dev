@@ -6,25 +6,21 @@
   min-height: 100vh;
   min-width: 100vw;
   background-color:white;
-}
 
-.Typer {
-  text-align: right;
-  float: right;
-  width: 50%;
-}
+  .CardGroupContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100vw;
+    margin-bottom: 100px;
+  }
 
-.Header {
-  margin-top: 10vh;
-  margin-bottom: 10vh;
-}
-
-.Header {
-  font-size: calc((10px + 2vmin) * 2);
-  font-weight: 500;
-}
-
-.Header .Sub {
-  font-size: calc((10px + 2vmin) / 1.25);
-  font-weight: 300;
+  .CardGroupHeader {
+    display: inline-block;
+    text-align: start;
+    margin-bottom: 10vh;
+    font-size: calc(min(calc(10px + 2vw), 8vmin) * 1.5);
+    font-weight: 500;
+  }
 }

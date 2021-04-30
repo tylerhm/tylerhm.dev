@@ -1,5 +1,5 @@
 import './Pathfinder.scss'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Navbar from 'react-bootstrap/Navbar'
 import Nav from 'react-bootstrap/Nav'
 import Button from 'react-bootstrap/Button'
@@ -28,6 +28,11 @@ const blockTypes = [
 const clockSpeed = 50
 
 const Pathfinder = () => {
+  
+  // Scroll back up
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
 
   // Currently selected algorithm and block type is stateful
   const [algorithm, setAlgorithm] = useState(0)

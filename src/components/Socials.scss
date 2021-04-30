@@ -1,0 +1,23 @@
+.Socials {
+
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: auto;
+  margin-top: 10vh;
+  font-size:  min(calc(10px + 2vw), 8vmin);
+
+  .Parallax {
+    display: flex;
+    flex-direction: row;
+  }
+
+  a {
+    transition: all 300ms ease-in;
+  }
+
+  a:hover {
+    transition: all 300ms ease-out;
+    color: gray;
+  }
+}

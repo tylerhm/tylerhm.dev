@@ -1,3 +1,8 @@
+.cell {
+  transition: all 100ms ease-in
+}
+
 .cell:hover {
+  transition: none;
   filter: brightness(85%);
 }

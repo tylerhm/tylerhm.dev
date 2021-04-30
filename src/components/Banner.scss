@@ -1,0 +1,40 @@
+.Banner {
+
+  --scalar: min(calc(10px + 2vw), 8vmin);
+  
+  min-height: 100vh;
+  width: 100vw;
+  text-align: center;
+  color: var(--darkest);
+  
+  .Typer {
+    text-align: right;
+    float: right;
+    width: 50%;
+  }
+  
+  .Header {
+    display: inline-block;
+    text-align: start;
+    margin-top: 20vh;
+    font-size: calc(var(--scalar) * 2);
+    font-weight: 500;
+  }
+  
+  .Header .Sub {
+    font-size: calc(var(--scalar) / 1.25);
+    font-weight: 300;
+  }
+
+  .ScrollIndicatorContainer {
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    font-size: calc(var(--scalar) * 2);
+
+  }
+  .ScrollIndicator {
+    position: relative;
+    left: -50%;
+  }
+}
