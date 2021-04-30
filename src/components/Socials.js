@@ -11,13 +11,13 @@ import resume from '../downloads/TylerHostlerMathis_RESUME.pdf'
 
 const Socials = () => {
 
-  // Handle the style that should be applied to our scroll indicator
+  // Handle the style that should be applied to our social buttons
   const [socialStyles, setSocialStyles] = useState({
     gap: '40px',
     opacity: '100%',
   })
 
-  // Fade in when the user is scrolled all the way up
+  // Fade out and widen as the user scrolls down
   useScrollPosition(({ currPos }) => {
 
     const progress = -currPos.y / window.innerHeight
