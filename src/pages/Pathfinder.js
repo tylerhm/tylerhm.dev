@@ -8,6 +8,7 @@ import PathfindingGrid from '../components/pathfinding/PathfindingGrid.js'
 import Colors from '../utils/ColorScheme'
 import useGridUpdater from '../utils/GridUpdater'
 import Algorithms from '../utils/pathfinding/Algorithms'
+import MazeBuilder from '../utils/pathfinding/MazeBuilder'
 
 // Algorithms implemented by the Pathfinder
 const algorithms = [
@@ -47,7 +48,7 @@ const Pathfinder = () => {
     setBlockType(blockTypeIndex)
   }
 
-  const cellSize = 75
+  const cellSize = 50
 
   // gridState is updated when window size changes
   const { gridState, setGridState, resetGridState } = useGridUpdater(cellSize)
@@ -165,9 +166,20 @@ const Pathfinder = () => {
     setGridState(gridStateCopy)
   }
 
+  const fillWalls = () => {
+    const gridStateCopy = [...gridState]
+    for (let y = 0; y < cellsY; y++)
+      for (let x = 0; x < cellsX; x++)
+        gridStateCopy[y][x] = 'Wall'
+    setGridState(gridStateCopy)
+  }
+
   // Main Pathfinding object
   const pathfinder = new Algorithms(algorithm)
   let clocker = undefined
+
+  // Main Mazebuilder object
+  const mazeBuilder = new MazeBuilder(cellsX, cellsY)
 
   // Starts a pathfinding session
   const startPathfinding = () => {
@@ -199,7 +211,7 @@ const Pathfinder = () => {
         setGridStateFromPoints(pathfinder.path, 'Path')
         setPathDisplayed(true)
         setPathing(false)
-        stopPathfinding()
+        stopClocker()
       }
       else
         // Update the new frontier
@@ -208,11 +220,39 @@ const Pathfinder = () => {
     }, clockSpeed)
   }
 
-  // Clears the pathfinding interval
-  const stopPathfinding = () => {
-    clearInterval(clocker)
+  const startMazeBuilding = () => {
+
+    if (pathing) return
+    
+    resetGridState()
+    fillWalls()
+    
+    setPathing(true)
+    
+    // Then, clock it on an interval
+    clocker = setInterval(() => {
+      
+      // Clock the current pathfinder session
+      mazeBuilder.clock()
+      
+      // We found the goal!
+      if (mazeBuilder.done) {
+        console.log('done')
+        setPathing(false)
+        stopClocker()
+      }
+      else
+        // Update the new frontier
+        setGridStateFromPoints(mazeBuilder.empty, 'Empty')
+      
+    }, clockSpeed)
   }
 
+  // Clears the clocking interval
+  const stopClocker = () => {
+    clearInterval(clocker)
+  }
+  
   return (
     <div className='layout'>
       <Navbar
@@ -250,6 +290,13 @@ const Pathfinder = () => {
             onClick={resetGridState}
           >
             Clear Grid
+          </Button>
+          <Button
+            style={{margin: 5}}
+            variant="outline-light"
+            onClick={startMazeBuilding}
+          >
+            Build Maze
           </Button>
         </Navbar.Collapse>
       </Navbar>

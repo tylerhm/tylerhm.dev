@@ -9,7 +9,7 @@ const states = {
   Wall: Colors.darkest,
   Start: Colors.accent1,
   End: Colors.accent2,
-  Visited: Colors.accent3,
+  Visited: Colors.visited,
   Path: Colors.path,
 }
 
