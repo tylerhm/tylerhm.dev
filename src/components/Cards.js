@@ -30,6 +30,12 @@ const Cards = {
     page: 'https://drive.google.com/file/d/1W2QugDdjEtT40bghaI3PLtvp-3QBLKjQ/view',
     external: true,
   },
+  'Predator Vs. Prey Cellular Automata': {
+    image: 'https://imgur.com/B266zePl.png',
+    body: 'A realtime procedural simulation of the interactions between a species of predator and prey. The beginning of my research with cellular automata.',
+    page: 'predator-vs-prey',
+    external: false,
+  },
 }
 
 export default Cards

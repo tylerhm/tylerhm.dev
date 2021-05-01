@@ -7,6 +7,7 @@ import {
 import Footer from './components/Footer'
 import Homepage from './pages/Homepage'
 import Pathfinder from './pages/Pathfinder'
+import PredatorVsPrey from './pages/PredatorVsPrey'
 
 function App() {
   return (
@@ -15,6 +16,10 @@ function App() {
 
         <Route path='/pathfinder'>
           <Pathfinder />
+        </Route>
+
+        <Route path='/predator-vs-prey'>
+          <PredatorVsPrey />
         </Route>
 
         <Route path='/home'>

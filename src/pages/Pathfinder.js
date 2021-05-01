@@ -1,7 +1,9 @@
 import './Pathfinder.scss'
 import { useState, useEffect } from 'react'
-import Navbar from 'react-bootstrap/Navbar'
-import Nav from 'react-bootstrap/Nav'
+import {
+  Navbar,
+  Nav,
+} from 'react-bootstrap'
 import Button from 'react-bootstrap/Button'
 import ContextualDropdown from '../components/ContextualDropdown'
 import PathfindingGrid from '../components/pathfinding/PathfindingGrid.js'

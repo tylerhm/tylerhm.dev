@@ -1,0 +1,14 @@
+.Sketch {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+
+  .Content {
+    flex-grow: 1;
+    background-color: white;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
