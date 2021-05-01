@@ -103,6 +103,9 @@ const Pathfinder = () => {
   }
 
   const setStartAndEndCorners = () => {
+
+    if (cellsX < 3 || cellsY < 3) return
+
     const gridStateCopy = [...gridState]
 
     if (validStart())
