@@ -13,8 +13,12 @@ const constructGridState = (cellSize) => {
   const { width, height } = getWindowDimensions()
 
   // Calculate necessary dimensions for pathfinding grid
-  const cellsY = Math.round(height / cellSize) - 4
-  const cellsX = Math.round(width / cellSize) - 4
+  let cellsY = Math.round((height - 200) / cellSize)
+  let cellsX = Math.round((width - 100) / cellSize)
+
+  // These numbers must be odd to facilitate maze generation
+  if (!(cellsY & 1)) cellsY--
+  if (!(cellsX & 1)) cellsX--
 
   // 2D grid of Cells
   const gridState = []

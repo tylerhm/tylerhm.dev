@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import PropTypes from 'prop-types'
 import GridCell from './GridCell'
-import Colors from '../utils/ColorScheme'
+import Colors from '../../utils/ColorScheme'
 
 // Manage all possible wall states
 const states = {
@@ -9,7 +9,7 @@ const states = {
   Wall: Colors.darkest,
   Start: Colors.accent1,
   End: Colors.accent2,
-  Visited: Colors.accent3,
+  Visited: Colors.visited,
   Path: Colors.path,
 }
 
