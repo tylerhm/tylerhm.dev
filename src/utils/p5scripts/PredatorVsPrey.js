@@ -1,5 +1,3 @@
-import p5Types from 'p5'
-
 let width, height
 let cellSize, cellsX, cellsY
 let percentDispData, dataPixelWidth, cellsPixelWidth
