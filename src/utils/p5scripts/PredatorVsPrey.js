@@ -8,7 +8,6 @@ let predatorHealthBuffer, preyHealthBuffer
 let predatorChance, preyChance
 let predatorMaxHealth, preyMaxHealth
 let maxSpeciesCount, dataCap
-let timeDelay, timeBuffer
 let preyCount, predatorCount
 let preyDataHeight, predatorDataHeight
 
@@ -19,7 +18,7 @@ function setup(p5, canvasParentRef, dimensions) {
 
   p5.createCanvas(width, height).parent(canvasParentRef)
 
-  cellSize = 10
+  cellSize = Math.floor(Math.max(width, height) / 100)
   preyChance = 0.05
   predatorChance = 0.05
   predatorMaxHealth = 25
@@ -46,19 +45,13 @@ function setup(p5, canvasParentRef, dimensions) {
   maxSpeciesCount = cellsX * cellsY
   dataCap = Math.floor(maxSpeciesCount / 4)
 
-  timeDelay = 0
-  timeBuffer = 500
-
   initializeCells()
 }
 
 function draw(p5) {
-  if (p5.millis() > timeBuffer) {
-    calculateCells()
-    drawCells(p5)
-    drawData(p5)
-    timeBuffer += timeDelay
-  }
+  calculateCells()
+  drawCells(p5)
+  drawData(p5)
 }
 
 function makeArr(rows, cols) { return Array(rows).fill().map(() => Array(cols).fill(0)) }

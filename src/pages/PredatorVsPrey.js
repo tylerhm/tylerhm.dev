@@ -1,4 +1,5 @@
 import './Sketch.scss'
+import { useEffect } from 'react'
 import {
   Navbar,
   Nav,
@@ -10,6 +11,11 @@ import {
 } from '../utils/p5scripts/PredatorVsPrey'
 
 const PredatorVsPrey = () => {
+
+  // Scroll back up
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
 
   const dimensions = {
     width: window.innerWidth - 200,
