@@ -102,6 +102,19 @@ const Pathfinder = () => {
     updateStartPoint(undefined, undefined)
   }
 
+  const setStartAndEndCorners = () => {
+    const gridStateCopy = [...gridState]
+
+    if (validStart())
+      gridStateCopy[startPoint.y][startPoint.x] = 'Empty'
+
+    updateStartPoint(1, 1)
+    gridStateCopy[1][1] = 'Start'
+    gridStateCopy[cellsY - 2][cellsX - 2] = 'End'
+
+    setGridState(gridStateCopy)
+  }
+
   // Update a cell to the cyclic next state
   const cellClicked = (y, x) => {
 
@@ -208,10 +221,10 @@ const Pathfinder = () => {
 
       // We found the goal!
       if (pathfinder.done) {
+        stopClocker()
         setGridStateFromPoints(pathfinder.path, 'Path')
         setPathDisplayed(true)
         setPathing(false)
-        stopClocker()
       }
       else
         // Update the new frontier
@@ -232,17 +245,17 @@ const Pathfinder = () => {
     // Then, clock it on an interval
     clocker = setInterval(() => {
       
-      // Clock the current pathfinder session
+      // Clock the current maze builder
       mazeBuilder.clock()
       
-      // We found the goal!
+      // We're done
       if (mazeBuilder.done) {
-        console.log('done')
-        setPathing(false)
         stopClocker()
+        setPathing(false)
+        setStartAndEndCorners()
       }
       else
-        // Update the new frontier
+        // Update the new path
         setGridStateFromPoints(mazeBuilder.empty, 'Empty')
       
     }, clockSpeed)
@@ -280,6 +293,13 @@ const Pathfinder = () => {
           <Button
             style={{margin: 5}}
             variant="outline-light"
+            onClick={startMazeBuilding}
+          >
+            Build Maze
+          </Button>
+          <Button
+            style={{margin: 5}}
+            variant="outline-light"
             onClick={startPathfinding}
           >
             Pathfind!
@@ -287,16 +307,16 @@ const Pathfinder = () => {
           <Button
             style={{margin: 5}}
             variant="outline-light"
-            onClick={resetGridState}
+            onClick={clearVisitedAndPath}
           >
-            Clear Grid
+            Clear Path
           </Button>
           <Button
             style={{margin: 5}}
             variant="outline-light"
-            onClick={startMazeBuilding}
+            onClick={resetGridState}
           >
-            Build Maze
+            Clear All
           </Button>
         </Navbar.Collapse>
       </Navbar>
@@ -309,7 +329,6 @@ const Pathfinder = () => {
           cellClicked={cellClicked}
         />
       </div>
-
 
     </div>
   )

@@ -4,7 +4,7 @@ const colors = {
   accent1: '#4ecdc4',
   accent2: '#ff6b6b',
   accent3: '#ffe66d',
-  visited: '#fdfcdc',
+  visited: '#fdbcdc',
   path: '#ffe66d',
 }
 

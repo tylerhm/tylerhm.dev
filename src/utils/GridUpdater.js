@@ -36,10 +36,7 @@ const constructGridState = (cellSize) => {
 const useGridState = (cellSize) => {
   const [gridState, setGridState] = useState(constructGridState(cellSize))
 
-  function resetGridState() {
-    setGridState(constructGridState(cellSize))
-    console.log('resetting grid')
-  }
+  const resetGridState = () => setGridState(constructGridState(cellSize))
 
   useEffect(() => {
     resetGridState()
