@@ -5,23 +5,21 @@ let predatorCells, preyCells
 let predatorCellsBuffer, preyCellsBuffer
 let predatorHealth, preyHealth
 let predatorHealthBuffer, preyHealthBuffer
-let predatorChance, preyChance
-let predatorMaxHealth, preyMaxHealth
 let maxSpeciesCount, dataCap
 let preyCount, predatorCount
 let preyDataHeight, predatorDataHeight
 
+const preyChance = 0.05
+const predatorChance = 0.05
+const predatorMaxHealth = 25
+const preyMaxHealth = 15
+
 function setup(p5, canvasParentRef, dimensions) {
   width = dimensions.width
   height = dimensions.height
+  cellSize = Math.floor(Math.max(width, height) / 100)
 
   p5.createCanvas(width, height).parent(canvasParentRef)
-
-  cellSize = Math.floor(Math.max(width, height) / 100)
-  preyChance = 0.05
-  predatorChance = 0.05
-  predatorMaxHealth = 25
-  preyMaxHealth = 25
 
   percentDispData = 0.2
   dataPixelWidth = Math.floor(percentDispData * width)
@@ -147,6 +145,9 @@ function calculateCells() {
 
         preyCellsBuffer[newY][newX] = 1
         preyHealthBuffer[newY][newX] = 1
+
+        preyCells[y][x] = 1
+        preyHealth[y][x] = 1
       }
 
       // update main array to match buffer
@@ -186,10 +187,15 @@ function drawCells(p5) {
   for (let y = 0; y < cellsY; y++) {
     for (let x = 0; x < cellsX; x++) {
       if (predatorCells[y][x] == 1) {
-        p5.fill(255, 0, 0, predatorHealth[y][x] * 10 + 5)
+        p5.fill(
+          255,
+          0,
+          0,
+          predatorHealth[y][x] * 10 + (255 - predatorMaxHealth * 10)
+        )
         predatorCount++
       } else if (preyCells[y][x] == 1) {
-        p5.fill(0, 255, 0, preyHealth[y][x] * 5 + 5)
+        p5.fill(0, 255, 0, preyHealth[y][x] * 10 + (255 - preyMaxHealth * 10))
         preyCount++
       } else p5.fill(0)
       p5.rect(x * cellSize, y * cellSize, cellSize, cellSize)
