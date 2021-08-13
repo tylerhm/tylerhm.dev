@@ -32,7 +32,7 @@ const Cards = {
   },
   'Predator Vs. Prey Cellular Automata': {
     image: 'https://imgur.com/B266zePm.png',
-    body: 'A realtime procedural simulation of the interactions between a species of predator and prey. This project was a catalyst for my interest in cellular automata',
+    body: 'A realtime procedural simulation of the interactions between a species of predator and prey. This project was a catalyst for my interest in cellular automata.',
     page: 'predator-vs-prey',
     external: false,
   },
