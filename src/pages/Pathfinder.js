@@ -1,12 +1,10 @@
 import './Pathfinder.scss'
 import { useState, useEffect } from 'react'
-import {
-  Navbar,
-  Nav,
-} from 'react-bootstrap'
+import { Navbar, Nav } from 'react-bootstrap'
 import Button from 'react-bootstrap/Button'
 import ContextualDropdown from '../components/ContextualDropdown'
-import PathfindingGrid from '../components/pathfinding/PathfindingGrid.js'
+import MouseContext from '../components/pathfinding/MouseContext'
+import PathfindingGrid from '../components/pathfinding/PathfindingGrid'
 import Colors from '../utils/ColorScheme'
 import useGridUpdater from '../utils/GridUpdater'
 import Algorithms from '../utils/pathfinding/Algorithms'
@@ -21,16 +19,11 @@ const algorithms = [
 ]
 
 // Placeable block types
-const blockTypes = [
-  'Wall',
-  'Start',
-  'End',
-]
+const blockTypes = ['Wall', 'Start', 'End']
 
 const clockSpeed = 50
 
 const Pathfinder = () => {
-  
   // Scroll back up
   useEffect(() => {
     window.scrollTo(0, 0)
@@ -39,6 +32,9 @@ const Pathfinder = () => {
   // Currently selected algorithm and block type is stateful
   const [algorithm, setAlgorithm] = useState(0)
   const [blockType, setBlockType] = useState(0)
+
+  // Maintain mouse position for MouseContext
+  const [mousePos, setMousePos] = useState({ x: 0, y: 0 })
 
   // Updates the algorithm by index
   const updateSelectedAlgorithm = (algorithmIndex) => {
@@ -61,7 +57,7 @@ const Pathfinder = () => {
 
   // Thickness of grid border
   const borderWidth = 3
-  
+
   // Grid style
   const styles = {
     gridContainer: {
@@ -88,7 +84,7 @@ const Pathfinder = () => {
     x: undefined,
     y: undefined,
   })
-  
+
   const validStart = () => {
     return startPoint.y !== undefined && startPoint.x !== undefined
   }
@@ -105,13 +101,11 @@ const Pathfinder = () => {
   }
 
   const setStartAndEndCorners = () => {
-
     if (cellsX < 3 || cellsY < 3) return
 
     const gridStateCopy = [...gridState]
 
-    if (validStart())
-      gridStateCopy[startPoint.y][startPoint.x] = 'Empty'
+    if (validStart()) gridStateCopy[startPoint.y][startPoint.x] = 'Empty'
 
     updateStartPoint(1, 1)
     gridStateCopy[1][1] = 'Start'
@@ -122,9 +116,7 @@ const Pathfinder = () => {
 
   // Update a cell to the cyclic next state
   const cellClicked = (y, x) => {
-
-    if (pathing)
-      return
+    if (pathing) return
 
     // Clear the fontier if necessary
     if (pathDisplayed) {
@@ -143,17 +135,14 @@ const Pathfinder = () => {
 
     if (erase) {
       // If the cell was start, then remove the tracking on start node.
-      if (clickedCellState === 'Start')
-        clearStartPoint()
+      if (clickedCellState === 'Start') clearStartPoint()
 
       // Empty the cell
       gridStateCopy[y][x] = 'Empty'
-    }
-    else {
+    } else {
       // If we are placing a start, update the start location
       if (blockTypes[blockType] === 'Start') {
-        if (validStart())
-          gridStateCopy[startPoint.y][startPoint.x] = 'Empty'
+        if (validStart()) gridStateCopy[startPoint.y][startPoint.x] = 'Empty'
         updateStartPoint(y, x)
       }
 
@@ -166,9 +155,11 @@ const Pathfinder = () => {
   // Sets all points in the points array to visited
   const setGridStateFromPoints = (points, newState) => {
     const gridStateCopy = [...gridState]
-    points.forEach(point => {
-      if (gridStateCopy[point.y][point.x] !== 'Start' && 
-          gridStateCopy[point.y][point.x] !== 'End')
+    points.forEach((point) => {
+      if (
+        gridStateCopy[point.y][point.x] !== 'Start' &&
+        gridStateCopy[point.y][point.x] !== 'End'
+      )
         gridStateCopy[point.y][point.x] = newState
     })
     setGridState(gridStateCopy)
@@ -178,8 +169,7 @@ const Pathfinder = () => {
     const gridStateCopy = [...gridState]
     for (let y = 0; y < cellsY; y++)
       for (let x = 0; x < cellsX; x++)
-        if (gridStateCopy[y][x] === 'Visited' ||
-            gridStateCopy[y][x] === 'Path')
+        if (gridStateCopy[y][x] === 'Visited' || gridStateCopy[y][x] === 'Path')
           gridStateCopy[y][x] = 'Empty'
     setGridState(gridStateCopy)
   }
@@ -187,8 +177,7 @@ const Pathfinder = () => {
   const fillWalls = () => {
     const gridStateCopy = [...gridState]
     for (let y = 0; y < cellsY; y++)
-      for (let x = 0; x < cellsX; x++)
-        gridStateCopy[y][x] = 'Wall'
+      for (let x = 0; x < cellsX; x++) gridStateCopy[y][x] = 'Wall'
     setGridState(gridStateCopy)
   }
 
@@ -201,11 +190,9 @@ const Pathfinder = () => {
 
   // Starts a pathfinding session
   const startPathfinding = () => {
-
     // If there is no start node, then don't start pathfinding
     // Alert the user
-    if (!validStart() || pathing)
-      return
+    if (!validStart() || pathing) return
 
     // If the path is still displayed, clear it.
     if (pathDisplayed) {
@@ -220,7 +207,6 @@ const Pathfinder = () => {
 
     // Then, clock it on an interval
     clocker = setInterval(() => {
-
       // Clock the current pathfinder session
       pathfinder.clock()
 
@@ -231,38 +217,32 @@ const Pathfinder = () => {
         setPathDisplayed(true)
         setPathing(false)
       }
-      else
-        // Update the new frontier
-        setGridStateFromPoints(pathfinder.visited, 'Visited')
-
+      // Update the new frontier
+      else setGridStateFromPoints(pathfinder.visited, 'Visited')
     }, clockSpeed)
   }
 
   const startMazeBuilding = () => {
-
     if (pathing) return
-    
+
     resetGridState()
     fillWalls()
-    
+
     setPathing(true)
-    
+
     // Then, clock it on an interval
     clocker = setInterval(() => {
-      
       // Clock the current maze builder
       mazeBuilder.clock()
-      
+
       // We're done
       if (mazeBuilder.done) {
         stopClocker()
         setPathing(false)
         setStartAndEndCorners()
       }
-      else
-        // Update the new path
-        setGridStateFromPoints(mazeBuilder.empty, 'Empty')
-      
+      // Update the new path
+      else setGridStateFromPoints(mazeBuilder.empty, 'Empty')
     }, clockSpeed)
   }
 
@@ -270,14 +250,13 @@ const Pathfinder = () => {
   const stopClocker = () => {
     clearInterval(clocker)
   }
-  
+
   return (
-    <div className='layout'>
-      <Navbar
-        className='nav'
-        bg='dark'
-        variant='dark'
-        expand='lg'>
+    <div
+      className='layout'
+      onMouseMove={(e) => setMousePos({ x: e.clientX, y: e.clientY })}
+    >
+      <Navbar className='nav' bg='dark' variant='dark' expand='lg'>
         <Navbar.Brand href='/home'>Home</Navbar.Brand>
         <Navbar.Toggle aria-controls='basic-navbar-nav' />
         <Navbar.Collapse id='basic-navbar-nav'>
@@ -296,38 +275,38 @@ const Pathfinder = () => {
             />
           </Nav>
           <Button
-            style={{margin: 5}}
-            variant="outline-light"
+            style={{ margin: 5 }}
+            variant='outline-light'
             onClick={startMazeBuilding}
           >
             Build Maze
           </Button>
           <Button
-            style={{margin: 5}}
-            variant="outline-light"
+            style={{ margin: 5 }}
+            variant='outline-light'
             onClick={startPathfinding}
           >
             Pathfind!
           </Button>
           <Button
-            style={{margin: 5}}
-            variant="outline-light"
+            style={{ margin: 5 }}
+            variant='outline-light'
             onClick={clearVisitedAndPath}
           >
             Clear Path
           </Button>
           <Button
-            style={{margin: 5}}
-            variant="outline-light"
+            style={{ margin: 5 }}
+            variant='outline-light'
             onClick={resetGridState}
           >
             Clear All
           </Button>
         </Navbar.Collapse>
       </Navbar>
-      
+
       <div className='content'>
-        <PathfindingGrid 
+        <PathfindingGrid
           style={styles.gridContainer}
           gridState={gridState}
           cellSize={cellSize}
@@ -335,6 +314,7 @@ const Pathfinder = () => {
         />
       </div>
 
+      <MouseContext mousePos={mousePos} block={blockTypes[blockType]} />
     </div>
   )
 }
