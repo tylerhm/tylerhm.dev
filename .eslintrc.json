@@ -4,19 +4,14 @@
     "browser": true,
     "es6": true
   },
-  "plugins": [
-    "react"
-  ],
+  "plugins": ["react"],
   "rules": {
-    "quotes": ["error", "single"],
+    "quotes": ["error", "single", "avoid-escape"],
     "semi": ["error", "never"],
     "indent": ["error", 2],
     "no-unused-vars": ["warn"],
 
     "react/react-in-jsx-scope": ["off"]
   },
-  "extends": [
-    "eslint:recommended",
-    "plugin:react/recommended"
-  ]
+  "extends": ["eslint:recommended", "plugin:react/recommended"]
 }

@@ -1,7 +1,7 @@
 import './Homepage.scss'
 import Banner from '../components/Banner'
 import CardGroup from '../components/CardGroup'
-import Cards from '../components/Cards'
+import Cards from '../utils/Cards'
 
 function Homepage() {
   return (
@@ -9,7 +9,7 @@ function Homepage() {
       <Banner />
       <div className='CardGroupContainer'>
         <div className='CardGroupHeader'>
-          Highlights
+          Portfolio
         </div>
         <CardGroup cardData={Cards}/>
       </div>

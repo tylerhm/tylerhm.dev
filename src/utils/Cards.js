@@ -1,6 +1,6 @@
 // Renderable cards
 const Cards = {
-  'Groov': {
+  Groov: {
     image: 'https://imgur.com/QwXe6X5m.png',
     body: 'A music based social media that brings freestyle to the pubic. For this project, I took the role of Project Manager and Mobile Developer.',
     page: 'https://github.com/GroovTeam',
@@ -8,8 +8,8 @@ const Cards = {
   },
   'Facebook SWE Internship': {
     image: 'https://imgur.com/ymBJG7em.png',
-    body: 'Three month paid internship on the Data Experiences team. Contributed directly to Facebook\'s codebase and bridged the gap between big data and consumers.',
-    page: 'https://www.facebook.com/careers/v2/jobs/654496918442526/',
+    body: "Three month paid internship on the Data Experiences team. Contributed directly to Facebook's codebase and bridged the gap between big data and over 20k monthly active users.",
+    page: 'https://www.facebook.com/careers/students-and-grads/?p[teams][0]=Internship%20-%20Engineering%2C%20Tech%20%26%20Design&p[teams][1]=Internship%20-%20Business&p[teams][2]=Internship%20-%20PhD&p[teams][3]=University%20Grad%20-%20PhD%20%26%20Postdoc&p[teams][4]=University%20Grad%20-%20Engineering%2C%20Tech%20%26%20Design&p[teams][5]=University%20Grad%20-%20Business&teams[0]=Internship%20-%20Engineering%2C%20Tech%20%26%20Design&teams[1]=Internship%20-%20Business&teams[2]=Internship%20-%20PhD&teams[3]=University%20Grad%20-%20PhD%20%26%20Postdoc&teams[4]=University%20Grad%20-%20Engineering%2C%20Tech%20%26%20Design&teams[5]=University%20Grad%20-%20Business#openpositions',
     external: true,
   },
   'Custom Portfolio': {
@@ -18,7 +18,7 @@ const Cards = {
     page: 'https://beariverairions.com',
     external: true,
   },
-  'Pathfinder': {
+  Pathfinder: {
     image: 'https://imgur.com/qc0Q9Hym.png',
     body: 'Awesome pathfinding visualization, written entirely in Javascript!',
     page: 'pathfinder',
@@ -32,7 +32,7 @@ const Cards = {
   },
   'Predator Vs. Prey Cellular Automata': {
     image: 'https://imgur.com/B266zePm.png',
-    body: 'A realtime procedural simulation of the interactions between a species of predator and prey. The beginning of my research with cellular automata.',
+    body: 'A realtime procedural simulation of the interactions between a species of predator and prey. This project was a catalyst for my interest in cellular automata',
     page: 'predator-vs-prey',
     external: false,
   },
