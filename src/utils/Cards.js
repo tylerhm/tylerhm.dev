@@ -42,6 +42,12 @@ const Cards = {
     page: 'predator-vs-prey',
     external: false,
   },
+  "Conway's Game of Life": {
+    image: '',
+    body: "Conway's Game of Life, run fully in the browser.",
+    page: 'conways-game-of-life',
+    external: false,
+  },
 }
 
 export default Cards
