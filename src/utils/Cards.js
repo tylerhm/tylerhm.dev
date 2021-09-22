@@ -15,7 +15,7 @@ const Cards = {
   'UCF Programming Team': {
     image: '',
     body: 'Member of the UCF Programming Team. Solved hundreds of technical programming problems both in competitions and in practice. Here you can find some of the resulting solutions, some of which may be incomplete.',
-    page: 'https://github.com/TylerMathis/progteam/tree/main/dev_sets',
+    page: 'https://github.com/TylerMathis/progteam/tree/main',
     external: true,
   },
   'Custom Portfolio': {
