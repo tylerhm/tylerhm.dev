@@ -1,6 +1,6 @@
 import './Sixle.scss'
 import { Navbar, Nav } from 'react-bootstrap'
-import SixleWordArea from '../components/SixleWordArea'
+import SixleWordArea from '../components/sixle/SixleWordArea'
 
 const Sixle = () => {
   return (
@@ -12,7 +12,9 @@ const Sixle = () => {
           <Nav className='mr-auto'></Nav>
         </Navbar.Collapse>
       </Navbar>
-      <SixleWordArea className="Content" />
+      <div className="Content" >
+        <SixleWordArea />
+      </div>
     </div>
   )
 }

@@ -1,5 +1,22 @@
 .Grid {
+    padding: 0.5em;
+    background-color: var(--darkest);
     display: flex;
-    
+    flex-direction: column;
+}
+
+.Word {
+    display: flex;
     flex-direction: row;
+}
+
+.Char {
+    width: 1.5em;
+    height: 1.5em;
+
+    border-style: solid;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
