@@ -2,6 +2,7 @@ import './SixleWordArea.scss'
 import { useState, useEffect } from 'react'
 import ColorScheme from '../../utils/ColorScheme'
 import getBlankGrid from '../../utils/sixle/BlankGridGen'
+import getGuessResponse from '../../utils/sixle/getGuessResponse'
 
 const STATUS = {
   'WRONG': 0,
@@ -22,13 +23,16 @@ const SixleWordArea = () => {
   const [gridIdx, setGridIdx] = useState(0)
   const [wordIdx, setWordIdx] = useState(0)
 
-  const checkWord = (index) => {
-    console.log(index)
+  const checkWord = () => {
+    const word = grid[gridIdx].reduce((curWord, stat) => curWord + stat.char, '')
+    console.log(word)
+    console.log(getGuessResponse(word))
+    return false
   }
 
   const handleSubmit = () => {
     if (wordIdx < 6) return
-    checkWord(gridIdx)
+    if (!checkWord()) return
     setGridIdx(gridIdx + 1)
     setWordIdx(0)
   }
@@ -46,7 +50,7 @@ const SixleWordArea = () => {
         const newWordIndex = wordIdx - 1
         grid[gridIdx][newWordIndex] = {
           char: null,
-          type: 4
+          status: STATUS.NONE
         }
         setWordIdx(newWordIndex)
       }
@@ -58,7 +62,7 @@ const SixleWordArea = () => {
     if (wordIdx >= 6) return
 
     // Change the letter
-    const letter = String.fromCharCode('a'.charCodeAt(0) + event.keyCode - 65)
+    const letter = String.fromCharCode('A'.charCodeAt(0) + event.keyCode - 65)
     
     // Make the update
     const gridCopy = [...grid]
