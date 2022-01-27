@@ -1,6 +1,5 @@
 .Grid {
-    padding: 0.125em;
-    background-color: var(--darkest);
+    padding: 0.05em;
     display: flex;
     flex-direction: column;
 }
@@ -15,7 +14,9 @@
     height: 3vw;
     font-size: 2vw;
 
-    margin: 0.125em;
+    color: white;
+
+    margin: 0.05em;
 
     display: flex;
     justify-content: center;
