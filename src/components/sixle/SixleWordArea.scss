@@ -10,9 +10,9 @@
 }
 
 .Char {
-    width: 3vw;
-    height: 3vw;
-    font-size: 2vw;
+    width: max(50px, 5vw);
+    height: max(50px, 5vw);
+    font-size: max(40px, 4vw);
 
     color: white;
 
