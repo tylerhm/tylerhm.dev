@@ -10,15 +10,17 @@
 }
 
 .Char {
-    width: max(50px, 5vw);
-    height: max(50px, 5vw);
-    font-size: max(40px, 4vw);
+    width: max(50px, 5vh);
+    height: max(50px, 5vh);
+    font-size: max(40px, 4vh);
 
     border: solid;
+    border-color: var(--darkest);
+    border-radius: 0.1em;
 
     color: white;
 
-    margin: 0.05em;
+    margin: 0.1em;
 
     display: flex;
     justify-content: center;

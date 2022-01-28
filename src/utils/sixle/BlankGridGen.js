@@ -1,4 +1,4 @@
-const getBlankGrid = () => {
+export const getBlankGrid = () => {
   const grid = []
 
   for (let i = 0; i < 7; i++) {
@@ -14,4 +14,15 @@ const getBlankGrid = () => {
   return grid
 }
 
-export default getBlankGrid
+export const getBlankKeys = () => {
+  const keys = []
+  
+  for (let i = 0; i < 26; i++) {
+    keys.push({
+      char: String.fromCharCode('A'.charCodeAt(0) + i),
+      status: 3
+    })
+  }
+
+  return keys
+}

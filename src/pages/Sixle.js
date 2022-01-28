@@ -1,8 +1,13 @@
 import './Sixle.scss'
+import { useState } from 'react'
 import { Navbar, Nav } from 'react-bootstrap'
 import SixleWordArea from '../components/sixle/SixleWordArea'
+import SixleKeyArea from '../components/sixle/SixleKeyArea'
+import { getBlankKeys } from '../utils/sixle/BlankGridGen'
 
 const Sixle = () => {
+  const [keys, setKeys] = useState(getBlankKeys())
+
   return (
     <div className="Layout">
       <Navbar className='nav' bg='dark' variant='dark' expand='lg'>
@@ -14,7 +19,12 @@ const Sixle = () => {
         </Navbar.Collapse>
       </Navbar>
       <div className="Content">
-        <SixleWordArea />
+        <div className="WordArea">
+          <SixleWordArea keys={keys} setKeys={setKeys} />
+        </div>
+        <div className="KeysArea">
+          <SixleKeyArea keys={keys} />
+        </div>
       </div>
     </div>
   )

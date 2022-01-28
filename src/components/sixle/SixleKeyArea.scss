@@ -1,0 +1,30 @@
+.Keyboard {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.Row {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.Key {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    color: white;
+
+    border: solid;
+    border-color: var(--darkest);
+    border-radius: 0.2em;
+    margin: 0.1em;
+
+    height: 7vh;
+    width: 5vh;
+    font-size: 4vh;
+}
