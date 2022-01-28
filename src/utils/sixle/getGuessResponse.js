@@ -10,7 +10,7 @@ const getCurrentDay = () => {
   return diffDays
 }
 
-const currentDay = getCurrentDay()
+let currentDay = getCurrentDay()
 
 const getGuessResponse = (guess) => {
   if(!knownWords.includes(guess)) return null
@@ -34,6 +34,10 @@ const getGuessResponse = (guess) => {
       }
   }
   return res
+}
+
+export const getRandomWord = () => {
+  currentDay = Math.floor(Math.random() * 10000)
 }
 
 export default getGuessResponse

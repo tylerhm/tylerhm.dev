@@ -2,7 +2,7 @@ import './SixleWordArea.scss'
 import { useState, useEffect } from 'react'
 import ColorScheme from '../../utils/ColorScheme'
 import getBlankGrid from '../../utils/sixle/BlankGridGen'
-import getGuessResponse from '../../utils/sixle/getGuessResponse'
+import getGuessResponse, { getRandomWord } from '../../utils/sixle/getGuessResponse'
 
 const STATUS = {
   'WRONG': 0,
@@ -23,8 +23,7 @@ const SixleWordArea = () => {
   const [gridIdx, setGridIdx] = useState(0)
   const [wordIdx, setWordIdx] = useState(0)
 
-  const checkWord = () => {
-    const word = grid[gridIdx].reduce((curWord, stat) => curWord + stat.char, '')
+  const checkWord = (word) => {    
     const response = getGuessResponse(word)
     if (response == null) return false
     for (let i = 0; i < 6; i++)
@@ -34,7 +33,17 @@ const SixleWordArea = () => {
 
   const handleSubmit = () => {
     if (wordIdx < 6) return
-    if (!checkWord()) return
+    const word = grid[gridIdx].reduce((curWord, stat) => curWord + stat.char, '')
+    
+    if (word === 'ZZZZZZ') {
+      setGrid(getBlankGrid())
+      setWordIdx(0)
+      setGridIdx(0)
+      getRandomWord()
+      return false
+    }
+
+    if (!checkWord(word)) return
     setGridIdx(gridIdx + 1)
     setWordIdx(0)
   }
@@ -84,12 +93,13 @@ const SixleWordArea = () => {
   return (
     <div className="Grid">
       {
-        grid.map((word, wordIdx) =>
-          <div className="Word" key={word.reduce((prev, stat) => prev + stat.char, '') + wordIdx}>
+        grid.map((word, gIdx) =>
+          <div className="Word" key={word.reduce((prev, stat) => prev + stat.char, '') + gIdx}>
             {
-              word.map((stat, idx) => 
-                <div className="Char" key={idx} style={{
-                  backgroundColor: COLORS[stat.status]
+              word.map((stat, wIdx) => 
+                <div className="Char" key={wIdx} style={{
+                  backgroundColor: COLORS[stat.status],
+                  borderColor: gIdx == gridIdx && wIdx == wordIdx ? '#444444' : ColorScheme.darkest,
                 }}>
                   {stat.char}
                 </div>
