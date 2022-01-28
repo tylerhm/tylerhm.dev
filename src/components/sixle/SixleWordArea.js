@@ -12,10 +12,10 @@ const STATUS = {
 }
 
 const COLORS = {
-  [STATUS.WRONG]: ColorScheme.accent1,
-  [STATUS.ALMOST]: ColorScheme.accent2,
-  [STATUS.RIGHT]: ColorScheme.accent3,
-  [STATUS.NONE]: ColorScheme.lightest
+  [STATUS.WRONG]: ColorScheme.darkest,
+  [STATUS.ALMOST]: ColorScheme.accent3,
+  [STATUS.RIGHT]: ColorScheme.green,
+  [STATUS.NONE]: ColorScheme.darkest,
 }
 
 const SixleWordArea = () => {
@@ -25,9 +25,11 @@ const SixleWordArea = () => {
 
   const checkWord = () => {
     const word = grid[gridIdx].reduce((curWord, stat) => curWord + stat.char, '')
-    console.log(word)
-    console.log(getGuessResponse(word))
-    return false
+    const response = getGuessResponse(word)
+    if (response == null) return false
+    for (let i = 0; i < 6; i++)
+      grid[gridIdx][i].status = response[i]
+    return true
   }
 
   const handleSubmit = () => {

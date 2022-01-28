@@ -26,7 +26,7 @@ const getGuessResponse = (guess) => {
     else
       targFreq[target[i].charCodeAt(0) - 'A'.charCodeAt(0)]++
   }
-  for (let i = 0; i < 6; i++){
+  for (let i = 0; i < 6; i++) {
     if (guess[i] != target[i])
       if (targFreq[guess[i].charCodeAt(0) - 'A'.charCodeAt(0)] > 0) {
         targFreq[guess[i].charCodeAt(0) - 'A'.charCodeAt(0)]--
