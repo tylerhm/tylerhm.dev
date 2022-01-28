@@ -1,24 +1,25 @@
 import './SixleWordArea.scss'
 import { useState, useEffect } from 'react'
 import ColorScheme from '../../utils/ColorScheme'
-import getBlankGrid from '../../utils/sixle/BlankGridGen'
+import { getBlankGrid } from '../../utils/sixle/BlankGridGen'
 import getGuessResponse, { getRandomWord } from '../../utils/sixle/getGuessResponse'
+import { PropTypes } from 'prop-types'
 
-const STATUS = {
+export const STATUS = {
   'WRONG': 0,
   'ALMOST': 1,
   'RIGHT': 2,
   'NONE': 3
 }
 
-const COLORS = {
-  [STATUS.WRONG]: ColorScheme.darkest,
+export const COLORS = {
+  [STATUS.WRONG]: '#292f3688',
   [STATUS.ALMOST]: ColorScheme.accent3,
   [STATUS.RIGHT]: ColorScheme.green,
   [STATUS.NONE]: ColorScheme.darkest,
 }
 
-const SixleWordArea = () => {
+const SixleWordArea = ({ keys, setKeys }) => {
   const [grid, setGrid] = useState(getBlankGrid())
   const [gridIdx, setGridIdx] = useState(0)
   const [wordIdx, setWordIdx] = useState(0)
@@ -26,8 +27,19 @@ const SixleWordArea = () => {
   const checkWord = (word) => {    
     const response = getGuessResponse(word)
     if (response == null) return false
-    for (let i = 0; i < 6; i++)
+
+    const newKeys = [...keys]
+    for (let i = 0; i < 6; i++) {
       grid[gridIdx][i].status = response[i]
+      
+      const charIdx = word.charCodeAt(i) - 'A'.charCodeAt(0)
+      if (response[i] === STATUS.RIGHT ||
+        (response[i] === STATUS.ALMOST && (keys[charIdx].status === STATUS.NONE || keys[charIdx].status === STATUS.WRONG)) ||
+        (response[i] === STATUS.WRONG && (keys[charIdx].status === STATUS.NONE)))
+        newKeys[charIdx].status = response[i]
+    }
+    setKeys(newKeys)
+
     return true
   }
 
@@ -98,8 +110,7 @@ const SixleWordArea = () => {
             {
               word.map((stat, wIdx) => 
                 <div className="Char" key={wIdx} style={{
-                  backgroundColor: COLORS[stat.status],
-                  borderColor: gIdx == gridIdx && wIdx == wordIdx ? '#444444' : ColorScheme.darkest,
+                  backgroundColor: gIdx == gridIdx && wIdx == wordIdx ? '#292f36CC' : COLORS[stat.status],
                 }}>
                   {stat.char}
                 </div>
@@ -110,6 +121,11 @@ const SixleWordArea = () => {
       }
     </div>
   )
+}
+
+SixleWordArea.propTypes = {
+  keys: PropTypes.array,
+  setKeys: PropTypes.func
 }
 
 export default SixleWordArea
