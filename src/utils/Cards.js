@@ -48,6 +48,12 @@ const Cards = {
     page: 'conways-game-of-life',
     external: false,
   },
+  'Sixle': {
+    image: 'https://imgur.com/hIJW1lN.png',
+    body: 'Wordle, but six letters!',
+    page: 'sixle',
+    external: false,
+  },
 }
 
 export default Cards

@@ -6,6 +6,7 @@ import {
 } from 'react-router-dom'
 import Footer from './components/Footer'
 import ConwaysGameOfLife from './pages/ConwaysGameOfLife'
+import Sixle from './pages/Sixle'
 import Homepage from './pages/Homepage'
 import Pathfinder from './pages/Pathfinder'
 import PredatorVsPrey from './pages/PredatorVsPrey'
@@ -20,6 +21,10 @@ function App() {
 
         <Route path='/conways-game-of-life'>
           <ConwaysGameOfLife />
+        </Route>
+
+        <Route path ='/sixle'>
+          <Sixle />
         </Route>
 
         <Route path='/predator-vs-prey'>

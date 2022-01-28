@@ -6,6 +6,7 @@ const colors = {
   accent3: '#ffe66d',
   visited: '#fdbcdc',
   path: '#ffe66d',
+  green: '#66a266'
 }
 
 export default colors
