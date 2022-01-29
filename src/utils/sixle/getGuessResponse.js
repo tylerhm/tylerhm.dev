@@ -6,7 +6,7 @@ const getCurrentDay = () => {
   const firstDate = new Date(2022, 1, 1)
   const secondDate = new Date()
 
-  const diffDays = Math.round(Math.abs((firstDate - secondDate) / oneDay))
+  const diffDays = Math.floor(Math.abs((firstDate - secondDate) / oneDay))
   return diffDays
 }
 

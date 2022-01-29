@@ -10,9 +10,9 @@
 }
 
 .Char {
-    width: 6vh;
-    height: 6vh;
-    font-size: 5vh;
+    width: min(7vh, 12vw);
+    height: min(7vh, 12vw);
+    font-size: min(6vh, 10vw);
 
     border: solid;
     border-color: var(--darkest);

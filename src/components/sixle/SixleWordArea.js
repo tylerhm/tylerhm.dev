@@ -1,7 +1,7 @@
 import './SixleWordArea.scss'
 import { useState, useEffect } from 'react'
 import ColorScheme from '../../utils/ColorScheme'
-import { getBlankGrid } from '../../utils/sixle/BlankGridGen'
+import { getBlankGrid, getBlankKeys } from '../../utils/sixle/BlankGridGen'
 import getGuessResponse, { getRandomWord } from '../../utils/sixle/getGuessResponse'
 import { PropTypes } from 'prop-types'
 
@@ -19,7 +19,7 @@ export const COLORS = {
   [STATUS.NONE]: ColorScheme.darkest,
 }
 
-const SixleWordArea = ({ keys, setKeys }) => {
+const SixleWordArea = ({ keys, setKeys, lastKey }) => {
   const [grid, setGrid] = useState(getBlankGrid())
   const [gridIdx, setGridIdx] = useState(0)
   const [wordIdx, setWordIdx] = useState(0)
@@ -49,6 +49,7 @@ const SixleWordArea = ({ keys, setKeys }) => {
     
     if (word === 'ZZZZZZ') {
       setGrid(getBlankGrid())
+      setKeys(getBlankKeys())
       setWordIdx(0)
       setGridIdx(0)
       getRandomWord()
@@ -102,6 +103,22 @@ const SixleWordArea = ({ keys, setKeys }) => {
     }
   }, [handleKeyDown, handleSubmit, grid, wordIdx, gridIdx])
 
+  useEffect(() => {
+    if (lastKey != null) {
+      if (lastKey.charAt(lastKey.length - 1) === '$')
+        lastKey = lastKey.substring(0, lastKey.length - 1)
+      let event = {
+        keyCode: -1
+      }
+      if (lastKey === 'backspace')
+        event.keyCode = 8
+      else if (lastKey === 'return')
+        event.keyCode = 13
+      else event.keyCode = lastKey.charCodeAt(0) - 'A'.charCodeAt(0) + 65
+      handleKeyDown(event)
+    }
+  }, [lastKey])
+
   return (
     <div className="Grid">
       {
@@ -125,7 +142,8 @@ const SixleWordArea = ({ keys, setKeys }) => {
 
 SixleWordArea.propTypes = {
   keys: PropTypes.array,
-  setKeys: PropTypes.func
+  setKeys: PropTypes.func,
+  lastKey: PropTypes.string
 }
 
 export default SixleWordArea
