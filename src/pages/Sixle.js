@@ -7,6 +7,7 @@ import { getBlankKeys } from '../utils/sixle/BlankGridGen'
 
 const Sixle = () => {
   const [keys, setKeys] = useState(getBlankKeys())
+  const [lastKey, setLastKey] = useState(null)
 
   return (
     <div className="Layout">
@@ -20,10 +21,10 @@ const Sixle = () => {
       </Navbar>
       <div className="Content">
         <div className="WordArea">
-          <SixleWordArea keys={keys} setKeys={setKeys} />
+          <SixleWordArea keys={keys} setKeys={setKeys} lastKey={lastKey} />
         </div>
         <div className="KeysArea">
-          <SixleKeyArea keys={keys} />
+          <SixleKeyArea keys={keys} lastKey={lastKey} setLastKey={setLastKey} />
         </div>
       </div>
     </div>

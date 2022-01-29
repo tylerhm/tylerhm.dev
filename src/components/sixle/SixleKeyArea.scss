@@ -24,7 +24,21 @@
     border-radius: 0.2em;
     margin: 0.1em;
 
-    height: 7vh;
-    width: 5vh;
-    font-size: 4vh;
+    height: min(7vh, 12vw);
+    width: min(5vh, 8vw);
+    font-size: min(4vh, 7vw);
+}
+
+.Backspace {
+    background-color: transparent;
+    border: none;
+}
+
+.Return {
+    padding: 0.1em;
+    margin-left: 0.4em;
+    background-color: var(--darkest);
+    border-radius: 0.3em;
+
+    border: none;
 }
