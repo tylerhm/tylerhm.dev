@@ -1,5 +1,5 @@
 // Renderable cards
-const Cards = {
+export const Highlights = {
   Groov: {
     image: 'https://imgur.com/QwXe6X5m.png',
     body: 'A music based social media that brings freestyle to the public. For this project, I took the role of Project Manager and Mobile Developer.',
@@ -13,15 +13,9 @@ const Cards = {
     external: true,
   },
   'UCF Programming Team': {
-    image: '',
+    image: 'https://imgur.com/iocS8B7m.png',
     body: 'Member of the UCF Programming Team. Solved hundreds of technical programming problems both in competitions and in practice. Here you can find some of the resulting solutions, some of which may be incomplete.',
     page: 'https://github.com/TylerMathis/progteam/tree/main',
-    external: true,
-  },
-  'Custom Portfolio': {
-    image: 'https://imgur.com/xH8SHD7m.png',
-    body: 'Dynamic portfolio built from scratch with React and Bootstrap, complete with Google Captcha V3 and automated email forms.',
-    page: 'https://briverairions.com',
     external: true,
   },
   Pathfinder: {
@@ -36,24 +30,46 @@ const Cards = {
     page: 'https://drive.google.com/file/d/1W2QugDdjEtT40bghaI3PLtvp-3QBLKjQ/view',
     external: true,
   },
-  'Predator Vs. Prey Cellular Automata': {
+  'Sixle': {
+    image: 'https://imgur.com/hIJW1lNm.png',
+    body: 'Wordle, but six letters!',
+    page: 'sixle',
+    external: false,
+  },
+  'Thread-Safe Hashmap Paper': {
+    image: 'https://imgur.com/7gjRXiEm.png',
+    body: 'Research paper outlining my findings while building a thread-safe hashmap in C++.',
+    page: 'https://www.overleaf.com/read/sbbdxytjctfd',
+    external: true,
+  }
+}
+
+export const ContractWork = {
+  'Theatre Portfolio': {
+    image: 'https://imgur.com/eASjzUrm.jpg',
+    body: 'Dynamic portfolio built from scratch with React and Bootstrap, complete with Google Captcha V3 and automated email forms.',
+    page: 'https://briverairions.com',
+    external: true,
+  },
+  'Music Portfolio': {
+    image: 'https://imgur.com/qUrEj7Zm.jpg',
+    body: 'Dynamic portfolio built from scratch with React and Bootstrap, complete with a fully functioning admin panel, Google Captcha V3, automated email forms.',
+    page: 'https://zshimswebsite.com',
+    external: true,
+  },
+}
+
+export const CellularAutomata = {
+  'Predator Vs. Prey': {
     image: 'https://imgur.com/B266zePm.png',
     body: 'A realtime procedural simulation of the interactions between a species of predator and prey. This project was a catalyst for my interest in cellular automata.',
     page: 'predator-vs-prey',
     external: false,
   },
   "Conway's Game of Life": {
-    image: '',
+    image: 'https://imgur.com/vlLZPEBm.png',
     body: "Conway's Game of Life, run fully in the browser.",
     page: 'conways-game-of-life',
     external: false,
   },
-  'Sixle': {
-    image: 'https://imgur.com/hIJW1lN.png',
-    body: 'Wordle, but six letters!',
-    page: 'sixle',
-    external: false,
-  },
 }
-
-export default Cards

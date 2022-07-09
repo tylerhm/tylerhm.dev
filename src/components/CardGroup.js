@@ -6,8 +6,8 @@ import useWindowDimensions from '../utils/useWindowDimensions'
 
 const CardGroup = ({ cardData }) => {
   const { height, width } = useWindowDimensions()
-  const cardWidth = 200 + 0.1 * Math.min(height, width)
-  const possibleColumns = Math.floor((0.9 * width) / cardWidth)
+  const cardWidth = 200 + 0.1 * Math.min(height, Math.min(1500, width))
+  const possibleColumns = Math.floor((0.9 * Math.min(1500, width)) / cardWidth)
   const numEntries = Object.keys(cardData).length
   const actualColumns =
     numEntries >= possibleColumns ? possibleColumns : numEntries

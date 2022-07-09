@@ -10,11 +10,15 @@ const getCurrentDay = () => {
   return diffDays
 }
 
-let currentDay = getCurrentDay()
+const dayChaotisizer = (day) => {
+  return day*day*7 + day*37 + 21
+}
+
+let wordIndex = dayChaotisizer(getCurrentDay())
 
 const getGuessResponse = (guess) => {
-  if(!knownWords.includes(guess)) return null
-  const target = validAnswers[currentDay % validAnswers.length]
+  if (!knownWords.includes(guess)) return null
+  const target = validAnswers[wordIndex % validAnswers.length]
   const res = [0, 0, 0, 0, 0, 0]
   const targFreq = []
   for (let i = 0; i < 26; i++)
@@ -37,7 +41,7 @@ const getGuessResponse = (guess) => {
 }
 
 export const getRandomWord = () => {
-  currentDay = Math.floor(Math.random() * 10000)
+  wordIndex = Math.floor(Math.random() * 10000)
 }
 
 export default getGuessResponse
