@@ -44,7 +44,7 @@ export const Highlights = {
   }
 }
 
-export const ContractWork = {
+export const FreelanceWebDev = {
   'Theatre Portfolio': {
     image: 'https://imgur.com/eASjzUrm.jpg',
     body: 'Dynamic portfolio built from scratch with React and Bootstrap, complete with Google Captcha V3 and automated email forms.',

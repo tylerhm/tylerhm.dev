@@ -1,7 +1,7 @@
 import './Homepage.scss'
 import Banner from '../components/Banner'
 import CardGroup from '../components/CardGroup'
-import { Highlights, ContractWork, CellularAutomata } from '../utils/Cards'
+import { Highlights, FreelanceWebDev, CellularAutomata } from '../utils/Cards'
 
 function Homepage() {
   return (
@@ -13,9 +13,9 @@ function Homepage() {
         </div>
         <CardGroup cardData={Highlights}/>
         <div className='CardGroupHeader'>
-          Contract Work
+          Freelance Web Dev
         </div>
-        <CardGroup cardData={ContractWork}/>
+        <CardGroup cardData={FreelanceWebDev}/>
         <div className='CardGroupHeader'>
           Cellular Automata
         </div>
