@@ -1,6 +1,6 @@
-import { FaGithub, FaLinkedin } from "react-icons/fa";
-import { MdMail } from "react-icons/md";
-import "./Footer.scss";
+import { FaGithub, FaLinkedin } from 'react-icons/fa'
+import { MdMail } from 'react-icons/md'
+import './Footer.scss'
 
 const Footer = () => {
   return (
@@ -21,7 +21,7 @@ const Footer = () => {
         </a>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Footer;
+export default Footer
