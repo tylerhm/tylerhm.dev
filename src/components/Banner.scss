@@ -6,6 +6,18 @@
   width: 100vw;
   text-align: center;
   color: var(--darkest);
+  background-color: transparent;
+
+  .DiagonalGradient {
+    background-image: linear-gradient(45deg, #654ea3, #eaafc8);
+    transform: skewY(25deg);
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    top: -80vh;
+    left: 0;
+    z-index: 0;
+  }
   
   .Typer {
     text-align: right;
@@ -19,6 +31,7 @@
     margin-top: 20vh;
     font-size: calc(var(--scalar) * 2);
     font-weight: 500;
+    z-index: 1;
   }
   
   .Header .Sub {
@@ -31,8 +44,8 @@
     left: 50%;
     bottom: 0;
     font-size: calc(var(--scalar) * 2);
-
   }
+
   .ScrollIndicator {
     position: relative;
     left: -50%;

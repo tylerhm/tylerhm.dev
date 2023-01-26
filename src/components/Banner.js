@@ -1,8 +1,8 @@
 import './Banner.scss'
-import { useState } from 'react'
+import {useState} from 'react'
 import ReactTypingEffect from 'react-typing-effect'
-import { IoIosArrowDown } from 'react-icons/io'
-import { useScrollPosition } from '@n8tb1t/use-scroll-position'
+import {IoIosArrowDown} from 'react-icons/io'
+import {useScrollPosition} from '@n8tb1t/use-scroll-position'
 import Socials from '../components/Socials'
 
 const Banner = () => {
@@ -13,7 +13,7 @@ const Banner = () => {
   })
 
   // Fade in when the user is scrolled all the way up
-  useScrollPosition(({ currPos }) => {
+  useScrollPosition(({currPos}) => {
     const isVisible = currPos.y >= 0
 
     const hiddenStyle = {
@@ -29,15 +29,16 @@ const Banner = () => {
 
   return (
     <div className='Banner'>
+      <div className='DiagonalGradient' />
       <div className='Header'>
         <div className='Sub'>
-          Hi :) I&apos;m
+                    Hi :) I&apos;m
         </div>
         <div>
-          Tyler Hostler-Mathis,
+                    Tyler Hostler-Mathis,
         </div>
         <div className='Sub'>
-          check out my work!
+                    check out my work!
           <ReactTypingEffect
             className='Typer'
             text={[
@@ -53,9 +54,9 @@ const Banner = () => {
           />
         </div>
       </div>
-      <Socials />
+      <Socials/>
       <div className='ScrollIndicatorContainer' style={scrollIndicatorStyle}>
-        <IoIosArrowDown className='ScrollIndicator' />
+        <IoIosArrowDown className='ScrollIndicator'/>
       </div>
     </div>
   )

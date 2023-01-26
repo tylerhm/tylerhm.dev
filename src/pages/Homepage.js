@@ -1,23 +1,23 @@
 import './Homepage.scss'
 import Banner from '../components/Banner'
 import CardGroup from '../components/CardGroup'
-import { Highlights, FreelanceWebDev, CellularAutomata } from '../utils/Cards'
+import {Highlights, FreelanceWebDev, CellularAutomata} from '../utils/Cards'
 
 function Homepage() {
   return (
     <div className='HomeLayout'>
-      <Banner />
+      <Banner/>
       <div className='CardGroupContainer'>
         <div className='CardGroupHeader'>
-          Highlights
+                    Highlights
         </div>
         <CardGroup cardData={Highlights}/>
         <div className='CardGroupHeader'>
-          Freelance Web Dev
+                    Freelance Web Dev
         </div>
         <CardGroup cardData={FreelanceWebDev}/>
         <div className='CardGroupHeader'>
-          Cellular Automata
+                    Cellular Automata
         </div>
         <CardGroup cardData={CellularAutomata}/>
       </div>
