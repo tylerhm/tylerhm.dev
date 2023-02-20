@@ -10,11 +10,15 @@ import Sixle from './pages/Sixle'
 import Homepage from './pages/Homepage'
 import Pathfinder from './pages/Pathfinder'
 import PredatorVsPrey from './pages/PredatorVsPrey'
+import TowerPrivacyPolicy from './pages/TowerPrivacyPolicy'
 
 function App() {
   return (
     <Router>
       <Switch>
+        <Route path='/tower-privacy-policy'>
+          <TowerPrivacyPolicy />
+        </Route>
         <Route path='/pathfinder'>
           <Pathfinder />
         </Route>
