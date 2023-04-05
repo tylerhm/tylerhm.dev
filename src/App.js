@@ -11,36 +11,40 @@ import Homepage from './pages/Homepage'
 import Pathfinder from './pages/Pathfinder'
 import PredatorVsPrey from './pages/PredatorVsPrey'
 import TowerPrivacyPolicy from './pages/TowerPrivacyPolicy'
+import TowerEULA from './pages/TowerEULA'
 
 function App() {
   return (
     <Router>
       <Switch>
-        <Route path='/tower-privacy-policy'>
+        <Route path="/tower-privacy-policy">
           <TowerPrivacyPolicy />
         </Route>
-        <Route path='/pathfinder'>
+        <Route path="/tower-eula">
+          <TowerEULA />
+        </Route>
+        <Route path="/pathfinder">
           <Pathfinder />
         </Route>
 
-        <Route path='/conways-game-of-life'>
+        <Route path="/conways-game-of-life">
           <ConwaysGameOfLife />
         </Route>
 
-        <Route path ='/sixle'>
+        <Route path="/sixle">
           <Sixle />
         </Route>
 
-        <Route path='/predator-vs-prey'>
+        <Route path="/predator-vs-prey">
           <PredatorVsPrey />
         </Route>
 
-        <Route path='/home'>
+        <Route path="/home">
           <Homepage />
         </Route>
 
-        <Route path='/'>
-          <Redirect to='/home' />
+        <Route path="/">
+          <Redirect to="/home" />
         </Route>
       </Switch>
 
