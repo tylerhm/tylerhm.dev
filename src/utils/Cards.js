@@ -1,15 +1,33 @@
 // Renderable cards
 export const Highlights = {
+  'Meta SWE Internships': {
+    image: 'https://imgur.com/ymBJG7em.png',
+    body: "Two three-month paid internships with Meta on Data Experiences and Instagram Creators teams. Contributed directly to Meta's production codebases and bridged the gap between big data, Instagram's creators, and over two billion monthly active users.",
+    page: 'https://www.facebook.com/careers/students-and-grads/?p[teams][0]=Internship%20-%20Engineering%2C%20Tech%20%26%20Design&p[teams][1]=Internship%20-%20Business&p[teams][2]=Internship%20-%20PhD&p[teams][3]=University%20Grad%20-%20PhD%20%26%20Postdoc&p[teams][4]=University%20Grad%20-%20Engineering%2C%20Tech%20%26%20Design&p[teams][5]=University%20Grad%20-%20Business&teams[0]=Internship%20-%20Engineering%2C%20Tech%20%26%20Design&teams[1]=Internship%20-%20Business&teams[2]=Internship%20-%20PhD&teams[3]=University%20Grad%20-%20PhD%20%26%20Postdoc&teams[4]=University%20Grad%20-%20Engineering%2C%20Tech%20%26%20Design&teams[5]=University%20Grad%20-%20Business#openpositions',
+    external: true,
+  },
   Groov: {
     image: 'https://imgur.com/QwXe6X5m.png',
     body: 'A music based social media that brings freestyle to the public. For this project, I took the role of Project Manager and Mobile Developer.',
     page: 'https://github.com/GroovTeam',
     external: true,
   },
-  'Facebook SWE Internship': {
-    image: 'https://imgur.com/ymBJG7em.png',
-    body: "Three month paid internship on the Data Experiences team. Contributed directly to Facebook's codebase and bridged the gap between big data and over 20k monthly active users.",
-    page: 'https://www.facebook.com/careers/students-and-grads/?p[teams][0]=Internship%20-%20Engineering%2C%20Tech%20%26%20Design&p[teams][1]=Internship%20-%20Business&p[teams][2]=Internship%20-%20PhD&p[teams][3]=University%20Grad%20-%20PhD%20%26%20Postdoc&p[teams][4]=University%20Grad%20-%20Engineering%2C%20Tech%20%26%20Design&p[teams][5]=University%20Grad%20-%20Business&teams[0]=Internship%20-%20Engineering%2C%20Tech%20%26%20Design&teams[1]=Internship%20-%20Business&teams[2]=Internship%20-%20PhD&teams[3]=University%20Grad%20-%20PhD%20%26%20Postdoc&teams[4]=University%20Grad%20-%20Engineering%2C%20Tech%20%26%20Design&teams[5]=University%20Grad%20-%20Business#openpositions',
+  Tower: {
+    image: 'https://imgur.com/2rbukiKm.png',
+    body: 'A social media for the Tower at UCF. Keeps climbers in the know about route updates, and allows them to share sends and compete on leaderboards.',
+    page: 'https://youtu.be/S631H8Txd64',
+    external: true,
+  },
+  'Thread-Safe Hashmap Paper': {
+    image: 'https://imgur.com/7gjRXiEm.png',
+    body: 'Research paper outlining my findings while building a thread-safe hashmap in C++.',
+    page: 'https://drive.google.com/file/d/1vpsYcmD4U3v19azYlDq7PmDlHmA6NfEI/view?usp=sharing',
+    external: true,
+  },
+  'Raytracer & Acceleration Structures': {
+    image: 'https://imgur.com/QWUsreVm.png',
+    body: 'Presentation outlining the results of a deep-dive into raytracing and acceleration structures in C++.',
+    page: 'https://youtu.be/-4M1FN9226Q',
     external: true,
   },
   'UCF Programming Team': {
@@ -30,18 +48,12 @@ export const Highlights = {
     page: 'https://drive.google.com/file/d/1W2QugDdjEtT40bghaI3PLtvp-3QBLKjQ/view',
     external: true,
   },
-  'Sixle': {
+  Sixle: {
     image: 'https://imgur.com/hIJW1lNm.png',
     body: 'Wordle, but six letters!',
     page: 'sixle',
     external: false,
   },
-  'Thread-Safe Hashmap Paper': {
-    image: 'https://imgur.com/7gjRXiEm.png',
-    body: 'Research paper outlining my findings while building a thread-safe hashmap in C++.',
-    page: 'https://www.overleaf.com/read/sbbdxytjctfd',
-    external: true,
-  }
 }
 
 export const FreelanceWebDev = {
