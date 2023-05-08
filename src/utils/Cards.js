@@ -2,7 +2,7 @@
 export const Highlights = {
   'Meta SWE Internships': {
     image: 'https://imgur.com/ymBJG7em.png',
-    body: "Two three-month paid internships with Meta on Data Experiences and Instagram Creators teams. Contributed directly to Meta's production codebases and bridged the gap between big data, Instagram's creators, and over two billion monthly active users.",
+    body: "Two three-month paid internships with Meta on Data Experiences and Instagram Subscriptions teams. Contributed directly to Meta's production codebases and bridged the gap between big data, Instagram's creators, and over two billion monthly active users.",
     page: 'https://www.facebook.com/careers/students-and-grads/?p[teams][0]=Internship%20-%20Engineering%2C%20Tech%20%26%20Design&p[teams][1]=Internship%20-%20Business&p[teams][2]=Internship%20-%20PhD&p[teams][3]=University%20Grad%20-%20PhD%20%26%20Postdoc&p[teams][4]=University%20Grad%20-%20Engineering%2C%20Tech%20%26%20Design&p[teams][5]=University%20Grad%20-%20Business&teams[0]=Internship%20-%20Engineering%2C%20Tech%20%26%20Design&teams[1]=Internship%20-%20Business&teams[2]=Internship%20-%20PhD&teams[3]=University%20Grad%20-%20PhD%20%26%20Postdoc&teams[4]=University%20Grad%20-%20Engineering%2C%20Tech%20%26%20Design&teams[5]=University%20Grad%20-%20Business#openpositions',
     external: true,
   },
