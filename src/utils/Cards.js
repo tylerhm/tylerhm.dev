@@ -56,20 +56,20 @@ export const Highlights = {
   },
 }
 
-export const FreelanceWebDev = {
-  'Theatre Portfolio': {
-    image: 'https://imgur.com/eASjzUrm.jpg',
-    body: 'Dynamic portfolio built from scratch with React and Bootstrap, complete with Google Captcha V3 and automated email forms.',
-    page: 'https://briverairions.com',
-    external: true,
-  },
-  'Music Portfolio': {
-    image: 'https://imgur.com/qUrEj7Zm.jpg',
-    body: 'Dynamic portfolio built from scratch with React and Bootstrap, complete with a fully functioning admin panel, Google Captcha V3, automated email forms.',
-    page: 'https://zshimswebsite.com',
-    external: true,
-  },
-}
+// export const FreelanceWebDev = {
+//   'Theatre Portfolio': {
+//     image: 'https://imgur.com/eASjzUrm.jpg',
+//     body: 'Dynamic portfolio built from scratch with React and Bootstrap, complete with Google Captcha V3 and automated email forms.',
+//     page: 'https://briverairions.com',
+//     external: true,
+//   },
+//   'Music Portfolio': {
+//     image: 'https://imgur.com/qUrEj7Zm.jpg',
+//     body: 'Dynamic portfolio built from scratch with React and Bootstrap, complete with a fully functioning admin panel, Google Captcha V3, automated email forms.',
+//     page: 'https://zshimswebsite.com',
+//     external: true,
+//   },
+// }
 
 export const CellularAutomata = {
   'Predator Vs. Prey': {
