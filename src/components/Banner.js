@@ -39,7 +39,7 @@ const Banner = () => {
           check out my work!
           <ReactTypingEffect
             className="Typer"
-            text={['a developer 💻', 'a climber 🧗', 'an intern 🌎']}
+            text={['iOS @ Instagram 📸', 'climber 🧗', 'musician 🥁']}
             speed={50}
             eraseSpeed={50}
             typingDelay={1000}
